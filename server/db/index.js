@@ -18,18 +18,24 @@ const syncTables = async()=> {
     username VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL
   );
+  CREATE TABLE Platform(
+    id  SERIAL  PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+  );
   CREATE TABLE products(
     id  SERIAL  PRIMARY KEY,
     name  VARCHAR(255)  UNIQUE NOT NULL,
     description TEXT  NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     image_url VARCHAR(255) NOT NULL,
-    condition VARCHAR(10) NOT NULL
+    condition VARCHAR(10) NOT NULL,
+    "platform_id" INTEGER NOT NULL REFERENCES Platform(id)
    );
    CREATE TABLE Cart(
     id  SERIAL  PRIMARY KEY,
     "user_id" INTEGER NOT NULL REFERENCES Users(id),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    "isPurchased" BOOLEAN DEFAULT false
    );
    CREATE TABLE Cart_Products(
     id  SERIAL  PRIMARY KEY,
@@ -37,10 +43,7 @@ const syncTables = async()=> {
     "product_id" INTEGER NOT NULL REFERENCES Products(id),
     quantity INTEGER NOT NULL
   );
-  CREATE TABLE Platform(
-    id  SERIAL  PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-  );
+  
   `;
   await client.query(SQL);
 };
