@@ -1,5 +1,7 @@
 const { syncAndSeed } = require("./index");
+//const { myGames } = require("./data")
 const client = require("./client");
+
 
 const setup = async () => {
   try {

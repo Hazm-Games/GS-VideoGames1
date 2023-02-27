@@ -2,10 +2,12 @@ const client = require("./client");
 const { getUserByToken, createUser, authenticate } = require("./User");
 const { createProduct } = require("./products");
 const { addPlatform } = require("./platform");
+const { myGames } = require("./data");
 
 const syncTables = async () => {
   console.log("syncing tables");
-  const SQL = `
+  try {
+    const SQL = `
   DROP TABLE IF EXISTS Cart_Products;
   DROP TABLE IF EXISTS Cart;
   DROP TABLE IF EXISTS products;
@@ -22,11 +24,12 @@ const syncTables = async () => {
   );
   CREATE TABLE products(
     id  SERIAL  PRIMARY KEY,
-    name  VARCHAR(255)  UNIQUE NOT NULL,
-    description TEXT  NOT NULL,
+    title  VARCHAR(255)  UNIQUE NOT NULL,
+    thumbnail VARCHAR(255) NOT NULL,
+    short_description TEXT  NOT NULL,
+    genre TEXT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
-    condition VARCHAR(10) NOT NULL,
+    "onSale" BOOLEAN DEFAULT false,
     platform_id INTEGER NOT NULL REFERENCES Platform(id)
     );
    CREATE TABLE cart(
@@ -43,37 +46,31 @@ const syncTables = async () => {
   );
   
   `;
-  await client.query(SQL);
+    await client.query(SQL);
+    console.log("Finished building tables");
+  } catch (error) {
+    console.error("error constructing tables");
+    throw error;
+  }
 };
 
 const platformAdder = async () => {
   const [platformInsert] = await Promise.all([
     addPlatform({
-      name: "XBOX"
+      name: "XBOX",
     }),
     addPlatform({
-      name: "Playstation"
+      name: "Playstation",
     }),
     addPlatform({
-      name: "Nintendo"
+      name: "Nintendo",
     }),
   ]);
   console.log(platformInsert);
 };
 
-const makeProducts = async () => {
-  const [gameTest] = await Promise.all([
-    createProduct({
-      name: "gameTest",
-      description: "descTest",
-      price: "100",
-      image_url: "words",
-      condition: "New",
-      platform_id: 1,
-    }),
-  ]);
-  console.log(gameTest);
-};
+
+
 
 const syncAndSeed = async () => {
   try {
@@ -94,8 +91,13 @@ const syncAndSeed = async () => {
     console.log("seeding platforms");
     console.log("seeding products");
     await platformAdder();
-    await makeProducts();
-    } catch (error) {
+    
+    for (let i = 0; i < myGames.length; i++){
+      await createProduct(myGames[i])
+    }
+    
+    
+  } catch (error) {
     console.log(error);
   }
 };
@@ -104,7 +106,8 @@ module.exports = {
   syncAndSeed,
   createUser,
   authenticate,
-  makeProducts,
+  createProduct,
   getUserByToken,
   client,
 };
+ 
