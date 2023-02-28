@@ -3,6 +3,7 @@ const { getUserByToken, createUser, authenticate } = require("./User");
 const { createProduct } = require("./products");
 const { addPlatform } = require("./platform");
 const { myGames } = require("./data");
+const { createCart } = require("./cart");
 
 const syncTables = async () => {
   console.log("syncing tables");
@@ -34,7 +35,7 @@ const syncTables = async () => {
     );
    CREATE TABLE cart(
     id  SERIAL  PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES Users(id),
+    "userId" INTEGER NOT NULL REFERENCES Users(id),
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     "isPurchased" BOOLEAN DEFAULT false
    );
@@ -69,9 +70,6 @@ const platformAdder = async () => {
   console.log(platformInsert);
 };
 
-
-
-
 const syncAndSeed = async () => {
   try {
     await syncTables();
@@ -85,18 +83,18 @@ const syncAndSeed = async () => {
         password: "lucy_password",
       }),
     ]);
+    await createCart({ userId: 1 });
+    await createCart({ userId: 2 });
     console.log("--- seeded users ---");
     console.log(moe);
     console.log(lucy);
     console.log("seeding platforms");
     console.log("seeding products");
     await platformAdder();
-    
-    for (let i = 0; i < myGames.length; i++){
-      await createProduct(myGames[i])
+
+    for (let i = 0; i < myGames.length; i++) {
+      await createProduct(myGames[i]);
     }
-    
-    
   } catch (error) {
     console.log(error);
   }
@@ -110,4 +108,3 @@ module.exports = {
   getUserByToken,
   client,
 };
- 

@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
+import BasicSelect from "./SelectPlatforms";
 
-const Home = ()=> {
+const Home = () => {
   return (
     <div>
       <h1>Home</h1>

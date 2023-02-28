@@ -1,10 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './Components/App';
-import { HashRouter } from 'react-router-dom';
-
-
-
+import { Routes, Route, useLocation, HashRouter } from 'react-router-dom';
 
 
 
