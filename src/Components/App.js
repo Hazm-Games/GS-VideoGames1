@@ -50,12 +50,62 @@ const App = () => {
 
   return (
     <div>
-      <h1>FS UNI App Template</h1>
+<header>
+<div class="top-bar">
+          <div>
+          <Link className="logo" to="/">
+        <img
+          className="logo"
+          src="../../static/Files/HAZM-logo.png"
+          alt="Site logo"
+        />
+         </Link>
+
+          </div>
+          <div class="account-info">
+
+          <Link className="mwhite" to="/account">Account</Link>
+          <Link>
+          <img
+          width="25px"
+          height="auto"
+          src="../../static/Files/user-icon.png"
+          alt="user icon"
+        />
+         </Link>
+
+
+          <Link className="mwhite" to="/cart">cart</Link>
+
+          <Link>
+          <img
+          width="25px"
+          height="auto"
+          src="../../static/Files/shoppingCart.png"
+          alt="shopping cart"
+        />
+         </Link>
+
+
+           
+            
+            
+          </div>
+          </div>
+  
       <nav>
+
+     
+
+
         {auth.id ? (
           <>
             <Link to="/">Home</Link>
-            <button onClick={logout}>Logout {auth.username}</button>
+            <Link to="/playstation">Playstation</Link>
+            <Link to="/xbox">Xbox</Link>
+            <Link to="/nintendo">Nintendo</Link>
+            <Link to="/deals">Deals</Link>
+            <button className="loginBtn" onClick={logout}>Logout {auth.username}</button>
           </>
         ) : (
           <>
@@ -63,6 +113,8 @@ const App = () => {
           </>
         )}
       </nav>
+      
+      </header>
       <Routes>
         {auth.id ? (
           <>
@@ -74,6 +126,8 @@ const App = () => {
           </>
         )}
       </Routes>
+    
+    
     </div>
   );
 };
