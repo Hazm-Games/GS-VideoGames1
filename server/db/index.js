@@ -25,13 +25,13 @@ const syncTables = async () => {
   );
   CREATE TABLE products(
     id  SERIAL  PRIMARY KEY,
-    title  VARCHAR(255)  UNIQUE NOT NULL,
-    thumbnail VARCHAR(255) NOT NULL,
-    short_description TEXT  NOT NULL,
-    genre TEXT NOT NULL,
+    name  VARCHAR(255)  UNIQUE NOT NULL,
+    description TEXT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    "onSale" BOOLEAN DEFAULT false,
-    platform_id INTEGER NOT NULL REFERENCES Platform(id)
+     image_url VARCHAR(255) NOT NULL,
+    condition TEXT NOT NULL,
+    platform_id INTEGER NOT NULL REFERENCES Platform(id),
+    "onSale" BOOLEAN DEFAULT false
     );
    CREATE TABLE cart(
     id  SERIAL  PRIMARY KEY,
@@ -107,4 +107,5 @@ module.exports = {
   createProduct,
   getUserByToken,
   client,
+  myGames
 };
