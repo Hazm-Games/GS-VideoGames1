@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Home from "./Home";
 import Login from "./Login";
 import BasicSelect from "./SelectPlatforms";
+import products from "./Products";
 import { Link, Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -23,6 +24,14 @@ const App = () => {
   useEffect(() => {
     attemptLogin();
   }, []);
+
+  useEffect(()=>{
+    fetch('/api/products')
+    .then(response => response.json())
+    .then( products => {
+      setProducts(products);
+    })
+  },[]);
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -62,8 +71,14 @@ const App = () => {
             <Link to="/login">Login</Link>
           </>
         )}
+        <>
+        <Link to="/Products">Products</Link>
+      </>
       </nav>
       <Routes>
+      <>
+      <Route path="/products" element={<Products products={products} />} />
+    </>
         {auth.id ? (
           <>
             <Route path="/" element={<Home auth={auth} />} />
