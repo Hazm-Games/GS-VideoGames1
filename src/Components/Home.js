@@ -1,5 +1,5 @@
 import React from "react";
-import BasicSelect from "./SelectPlatforms";
+//import BasicSelect from "./SelectPlatforms";
 
 const Home = () => {
   return (

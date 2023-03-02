@@ -16,7 +16,7 @@ const createProduct = async({ name, description, price, image_url, condition,pla
 
     const getProducts = async () => {
   
-      const SOL = `
+      const SQL = `
       SELECT *
       FROM products`
       const response = await client. query (SQL);

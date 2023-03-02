@@ -1,25 +1,20 @@
 import React from "react";
-const express = require('express')
-const router = (express.Router);
-const { authenticate, getUserbytoken,  } require ('..')
+//const router = express.Router;
+//const { getProducts } = require("/server/db/products");
 
-const products = ({products}) => {
-return (
+const Products = ({ products }) => {
+  return (
     <ul>
-    {
-        products.map( product => {
-            return (
-                <li key ={product.id}>
-                {product.name}
-                </li>
-            )
-        })
-    }
+      {products.map((product) => {
+        return (
+          <li key={product.id}>
+            {product.name}; description is; {product.description}
+          </li>
+        );
+      })}
     </ul>
-)
+  );
+};
 
-
-
-}
-
-export default products
+export default Products;
+//module.exports = router;

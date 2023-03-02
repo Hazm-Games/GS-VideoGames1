@@ -6,7 +6,7 @@ const {
 } = require('../db');
 
 module.exports = router;
-
+// current location is api/auth
 router.post('/', async(req, res, next)=> {
   try {
     const token = await authenticate(req.body);
