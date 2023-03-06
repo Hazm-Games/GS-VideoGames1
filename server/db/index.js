@@ -28,7 +28,7 @@ const syncTables = async () => {
     name  VARCHAR(255)  UNIQUE NOT NULL,
     description TEXT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-     image_url VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
     condition TEXT NOT NULL,
     platform_id INTEGER NOT NULL REFERENCES Platform(id),
     "onSale" BOOLEAN DEFAULT false

@@ -22,9 +22,24 @@ const createProduct = async({ name, description, price, image_url, condition,pla
       const response = await client. query (SQL);
       return response.rows;
     }
-  
+
+   //async function getSingleProduct (id) {
+   // try{
+   // const {rows: [game]} = await client.query( `
+   const getSingleProduct = async (id) => {
+   
+   const SQL = `
+   SELECT *
+    FROM products 
+    WHERE id = $1
+    ` 
+    const response = await client. query (SQL,[id]);
+    return response.rows[0];
+  }
+
     module.exports = {
         createProduct,
         getProducts,
+        getSingleProduct,
       };
       
