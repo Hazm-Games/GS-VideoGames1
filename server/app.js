@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const { getProducts } = require("./db/products");
+const { getProducts, getSingleProduct } = require("./db/products");
 app.use(express.json());
 
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
@@ -18,6 +18,11 @@ app.get("/api/products", async (req, res) => {
   res.send(products);
 });
 
+app.get("/api/products/:id", async (req, res) => {
+  const id = req.params.id;
+  const singleProduct = await getSingleProduct(id);
+  res.send(singleProduct);
+});
 
 app.use((err, req, res, next) => {
   console.log(err);
