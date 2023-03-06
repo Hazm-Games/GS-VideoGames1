@@ -83,8 +83,8 @@ const syncAndSeed = async () => {
         password: "lucy_password",
       }),
     ]);
-    await createCart({ userId: 1 });
-    await createCart({ userId: 2 });
+    await createCart( 1 );
+    await createCart( 2 );
     console.log("--- seeded users ---");
     console.log(moe);
     console.log(lucy);
