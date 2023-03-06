@@ -69,12 +69,15 @@ const App = () => {
       <Routes>
 
         <Route path="/products" element={<Products products={products} />} />
+        
+
+       
 
         <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
 
-        <Route path="/products/:productId" element={<h1></h1>}
         
-         />
+        
+        
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />

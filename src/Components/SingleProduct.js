@@ -1,8 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const SingleProduct = ({  }) => {
+const SingleProduct = ({}) => {
   const [singleProduct, setSingleProduct] = useState({});
   const params = useParams();
   const id = params.id;
@@ -17,11 +17,17 @@ const SingleProduct = ({  }) => {
   }, []);
 
   return (
+   
+  
+
     <ul>
+    <img 
+    src={singleProduct.image_url}
+    />
+    
       <li>{singleProduct.name}</li>
       <li>{singleProduct.description}</li>
-      <li>{singleProduct.price}</li>
-      <li>{singleProduct.image_url}</li>
+      <li>{singleProduct.price}</li> 
       <li>{singleProduct.condition}</li>
       <li>{singleProduct.platform_id}</li>
       <li>{singleProduct.onSale}</li>
