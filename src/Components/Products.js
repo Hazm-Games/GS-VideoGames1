@@ -1,6 +1,5 @@
 import React from "react";
-//const router = express.Router;
-//const { getProducts } = require("/server/db/products");
+import { Link } from "react-router-dom";
 
 const Products = ({ products }) => {
   return (
@@ -8,7 +7,9 @@ const Products = ({ products }) => {
       {products.map((product) => {
         return (
           <li key={product.id}>
-            {product.name}; description is; {product.description}
+            <h3>
+              <Link to={`/products/${product.id}`}>{product.name}</Link>
+            </h3>
           </li>
         );
       })}
@@ -17,4 +18,3 @@ const Products = ({ products }) => {
 };
 
 export default Products;
-//module.exports = router;
