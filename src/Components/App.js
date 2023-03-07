@@ -5,6 +5,7 @@ import Nav from "./Nav";
 //import BasicSelect from "./SelectPlatforms";
 import Products from "./Products";
 import { Link, Routes, Route } from "react-router-dom";
+import SingleProduct from "./SingleProduct";
 
 const App = () => {
   const [auth, setAuth] = useState({});
@@ -63,15 +64,16 @@ const App = () => {
   return (
     <div>
      <Nav auth={auth} />
-     
+    
      
       <Routes>
 
         <Route path="/products" element={<Products products={products} />} />
-        <Route path="/products/:productId" element={<h1>This page is under construction</h1>}
+        <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
+
         
-         />
-        {auth.id ? (
+        
+         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
         ) : (
           <Route path="/login" element={<Login login={login} />} />
