@@ -64,22 +64,16 @@ const App = () => {
   return (
     <div>
      <Nav auth={auth} />
-     
+    
      
       <Routes>
 
         <Route path="/products" element={<Products products={products} />} />
-        
-
-       
-
         <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
 
         
         
-        
-
-        {auth.id ? (
+         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
         ) : (
           <Route path="/login" element={<Login login={login} />} />
