@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
-import App from "./App";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 
 

@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import Home from "./Home";
 import Login from "./Login";
 import Nav from "./Nav";
-//import BasicSelect from "./SelectPlatforms";
 import Products from "./Products";
 import { Link, Routes, Route } from "react-router-dom";
 import SingleProduct from "./SingleProduct";
+import NintendoProducts from "./Nintendo";
+import XboxProducts from "./Xbox";
+import PlaystationProducts from "./Playstation";
+import DealProducts from "./Deals";
+
 
 const App = () => {
   const [auth, setAuth] = useState({});
@@ -33,7 +37,6 @@ const App = () => {
       .then((response) => response.json())
       .then((products) => {
         setProducts(products);
-        console.log(products);
       });
   }, []);
 
@@ -63,21 +66,20 @@ const App = () => {
 
   return (
     <div>
-     <Nav auth={auth} />
-     
-     
+      <Nav auth={auth} />
+
       <Routes>
-
         <Route path="/products" element={<Products products={products} />} />
-        
 
-       
+        <Route path="/nintendo" element={<NintendoProducts NintendoProducts={NintendoProducts} />} />
+
+        <Route path="/playstation" element={<PlaystationProducts PlaystationProducts={PlaystationProducts} />} />
+
+        <Route path="/xbox" element={<XboxProducts XboxProducts={XboxProducts} />} />
+
+        <Route path="/deals" element={<DealProducts DealProducts={DealProducts} />} />
 
         <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
-
-        
-        
-        
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
@@ -85,8 +87,6 @@ const App = () => {
           <Route path="/login" element={<Login login={login} />} />
         )}
       </Routes>
-
-      
     </div>
   );
 };

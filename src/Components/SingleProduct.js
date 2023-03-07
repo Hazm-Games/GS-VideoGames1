@@ -11,23 +11,18 @@ const SingleProduct = ({}) => {
     fetch(`/api/products/${id}`)
       .then((response) => response.json())
       .then((singleProduct) => {
-       setSingleProduct(singleProduct);
-        console.log(singleProduct);
+        setSingleProduct(singleProduct);
+        
       });
   }, []);
 
   return (
-   
-  
-
     <ul>
-    <img 
-    src={singleProduct.image_url}
-    />
-    
+      <img src={singleProduct.image_url} />
+
       <li>{singleProduct.name}</li>
       <li>{singleProduct.description}</li>
-      <li>{singleProduct.price}</li> 
+      <li>{singleProduct.price}</li>
       <li>{singleProduct.condition}</li>
       <li>{singleProduct.platform_id}</li>
       <li>{singleProduct.onSale}</li>
