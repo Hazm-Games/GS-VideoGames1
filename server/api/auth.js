@@ -26,7 +26,7 @@ router.post('/register',async(req, res, next)=>{
      if(!(user)){
       error:"Username Taken",
       res.status(400).send("User Already Exist.Please Login"),
-      name: "Username Taken"
+      
      }
 
      if(user){
