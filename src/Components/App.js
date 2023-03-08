@@ -3,7 +3,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Nav from "./Nav";
 import Products from "./Products";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useNavigate, useParams } from "react-router-dom";
 import SingleProduct from "./SingleProduct";
 import NintendoProducts from "./Nintendo";
 import XboxProducts from "./Xbox";
@@ -11,6 +11,37 @@ import PlaystationProducts from "./Playstation";
 import DealProducts from "./Deals";
 
 
+
+
+const Search = ({ products })=> {
+  const { term } = useParams ();
+  const navigate = useNavigate();
+  return ( 
+    <ul>
+    <input placeholder='search for games' 
+    onChange = {
+      (ev)=> {
+      navigate(`/products/search/${ev.target.value}`);
+      console.log(ev.target.value);
+      }
+    } />
+  {products.filter (product => {
+      return !term ||  product.name.includes(term)
+    }).map( product => {
+    return (
+  <li key={ product.id }>
+   {product.name}
+  </li>
+    );
+    })
+  }
+  </ul>
+  );
+  };
+  
+  
+  
+  
 const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
@@ -66,8 +97,9 @@ const App = () => {
 
   return (
     <div>
-      <Nav auth={auth} />
-
+     <Nav auth={auth} />
+    
+     
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
 
@@ -81,7 +113,13 @@ const App = () => {
 
         <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
 
-        {auth.id ? (
+        <Route path="/products/search/:term" element={<Products products={products} />} />
+
+        <Route path="/products/search/" element={<Products products={products} />} />
+
+        
+        
+         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
         ) : (
           <Route path="/login" element={<Login login={login} />} />

@@ -1,5 +1,6 @@
 import React from "react";
-//import BasicSelect from "./SelectPlatforms";
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
   return (

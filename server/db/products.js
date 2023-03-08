@@ -50,7 +50,7 @@ const createProduct = async({ name, description, price, image_url, condition,pla
     const SQL = `
     SELECT *
      FROM products 
-     WHERE platform_id = 2
+     WHERE platform_id = 1
      ` 
      const response = await client. query (SQL);
      return response.rows;
@@ -61,7 +61,7 @@ const createProduct = async({ name, description, price, image_url, condition,pla
     const SQL = `
     SELECT *
      FROM products 
-     WHERE platform_id = 1
+     WHERE platform_id = 2
      ` 
      const response = await client. query (SQL);
      return response.rows;
