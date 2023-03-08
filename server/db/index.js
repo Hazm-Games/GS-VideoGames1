@@ -28,7 +28,7 @@ const syncTables = async () => {
     name  VARCHAR(255)  UNIQUE NOT NULL,
     description TEXT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-     image_url VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
     condition TEXT NOT NULL,
     platform_id INTEGER NOT NULL REFERENCES Platform(id),
     "onSale" BOOLEAN DEFAULT false
@@ -58,10 +58,10 @@ const syncTables = async () => {
 const platformAdder = async () => {
   const [platformInsert] = await Promise.all([
     addPlatform({
-      name: "XBOX",
+      name: "Playstation",
     }),
     addPlatform({
-      name: "Playstation",
+      name: "Xbox",
     }),
     addPlatform({
       name: "Nintendo",
@@ -83,8 +83,8 @@ const syncAndSeed = async () => {
         password: "lucy_password",
       }),
     ]);
-    await createCart({ userId: 1 });
-    await createCart({ userId: 2 });
+    await createCart( 1 );
+    await createCart( 2 );
     console.log("--- seeded users ---");
     console.log(moe);
     console.log(lucy);

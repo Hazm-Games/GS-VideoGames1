@@ -10,7 +10,7 @@ const Login = ({ login })=> {
   };
   return (
     <div>
-      <h2>Login</h2>
+      <h1 className="title">Login to view your account info!</h1>
       <form onSubmit={ _login }>
         <input
           placeholder='username'
@@ -23,6 +23,7 @@ const Login = ({ login })=> {
           onChange = { ev => setPassword(ev.target.value) }
         />
         <button>Login</button>
+        <p class="smalltext">Don't have an account? <a href="register.html">Register</a></p>
       </form>
     </div>
   );

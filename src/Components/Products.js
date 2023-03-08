@@ -1,20 +1,33 @@
-import React from "react";
-//const router = express.Router;
-//const { getProducts } = require("/server/db/products");
+import React, { useState, useEffect } from "react";
+import { Link, Routes, Route, useNavigate, useParams } from "react-router-dom";
 
 const Products = ({ products }) => {
+  const navigate = useNavigate();
+  const { term } = useParams();
   return (
     <ul>
-      {products.map((product) => {
-        return (
-          <li key={product.id}>
-            {product.name}; description is; {product.description}
-          </li>
-        );
-      })}
+      <input
+        placeholder="search for games"
+        onChange={(ev) => {
+          navigate(`/products/search/${ev.target.value}`);
+          console.log(ev.target.value);
+        }}
+      />
+      {products
+        .filter((product) => {
+          return !term || product.name.includes(term);
+        })
+        .map((product) => {
+          return (
+            <li key={product.id}>
+              <h3>
+                <Link to={`/products/${product.id}`}>{product.name}</Link>
+              </h3>
+            </li>
+          );
+        })}
     </ul>
   );
 };
 
 export default Products;
-//module.exports = router;
