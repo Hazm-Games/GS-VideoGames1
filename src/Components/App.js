@@ -100,10 +100,6 @@ const App = () => {
 
       <Nav auth={auth} />
 
-    
-     
-      <Routes>
-
 
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
@@ -118,6 +114,10 @@ const App = () => {
         <Route path="/deals" element={<DealProducts DealProducts={DealProducts} />} />
 
         <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
+
+        <Route path="/products/search" element={<Products products={products} />} />
+
+        <Route path="/products/search/:term" element={<Products products={products} />} />
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
