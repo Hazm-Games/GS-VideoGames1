@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Register = ({register})=> {
+const Register = ({ register })=> {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 

@@ -33,30 +33,38 @@ const Nav = (props) => {
             <Link>
               <img
                 className="icon"
-                width="25px"
+                width="32px"
                 height="auto"
                 src="../../static/Files/user-icon.png"
                 alt="user icon"
               />
             </Link>
+
+            <div>
             <Link className="mwhite" to="/user">
               Account
             </Link>
+            </div>
+
             </div>
             
       
             <div className="gap">
             <Link>
               <img
-                width="25px"
+                width="32px"
                 height="auto"
                 src="../../static/Files/shoppingCart.png"
                 alt="shopping cart"
               />
             </Link>
+
+            <div>
             <Link className="mwhite" to="/cart">
               cart
             </Link>
+            </div>
+            
             </div>
 
            
@@ -67,12 +75,12 @@ const Nav = (props) => {
           {auth.id ? (
             <>
             <ul className="ul">
-              <Link className="li" to="/">Home</Link>
-              <Link to="/playstation">Playstation</Link>
-              <Link to="/xbox">Xbox</Link>
-              <Link to="/nintendo">Nintendo</Link>
-              <Link to="/deals">Deals</Link>
-              <Link to="/products">Products</Link>
+              <Link className="fab" to="/">Home</Link>
+              <Link className="fab" to="/playstation">Playstation</Link>
+              <Link className="fab" to="/xbox">Xbox</Link>
+              <Link className="fab" to="/nintendo">Nintendo</Link>
+              <Link className="fab" to="/deals">Deals</Link>
+              <Link className="fab" to="/products">Products</Link>
               <button className="loginBtn" onClick={logout}> Logout {auth.username}</button>
               </ul>
              
@@ -80,6 +88,7 @@ const Nav = (props) => {
           ) : (
             <>
               <Link to="/login">Login</Link>
+             
             </>
           )}
          
