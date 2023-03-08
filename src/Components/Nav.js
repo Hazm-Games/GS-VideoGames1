@@ -1,19 +1,7 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom"
 
-
-
-
-
-const logout = () => {
-    window.localStorage.removeItem("token");
-    setAuth({});
-  };
-
-const Nav = (props) => {
-    const {auth} = props;
-   
-
+const Nav = ({ auth, logout }) => {
   return (
     <div>
       <header>
@@ -22,7 +10,7 @@ const Nav = (props) => {
             <Link className="logo" to="/">
               <img
                 className="logo"
-                src="../../static/Files/updateLogo1.png"
+                src="/static/Files/updateLogo1.png"
                 alt="Site logo"
               />
             </Link>
@@ -30,43 +18,40 @@ const Nav = (props) => {
 
           <div className="account-info">
             <div className="gap">
-            <Link>
-              <img
-                className="icon"
-                width="32px"
-                height="auto"
-                src="../../static/Files/user-icon.png"
-                alt="user icon"
-              />
-            </Link>
+              <Link>
+                <img
+                  className="icon"
+                  width="32px"
+                  height="auto"
+                  src="/static/Files/user-icon.png"
+                  alt="user icon"
+                />
+              </Link>
 
-            <div>
-            <Link className="mwhite" to="/user">
-              Account
-            </Link>
-            </div>
-
+              <div>
+                <Link className="mwhite" to="/user">
+                  Account
+                </Link>
+              </div>
             </div>
             
       
             <div className="gap">
-            <Link>
-              <img
-                width="32px"
-                height="auto"
-                src="../../static/Files/shoppingCart.png"
-                alt="shopping cart"
-              />
-            </Link>
+              <Link>
+                <img
+                  width="32px"
+                  height="auto"
+                  src="/static/Files/shoppingCart.png"
+                  alt="shopping cart"
+                />
+              </Link>
 
-            <div>
-            <Link className="mwhite" to="/cart">
-              cart
-            </Link>
+              <div>
+                <Link className="mwhite" to="/cart">
+                  cart
+                </Link>
+              </div>
             </div>
-            
-            </div>
-
            
           </div>
         </div>
