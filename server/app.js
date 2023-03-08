@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const { getProducts, getSingleProduct } = require("./db/products");
+const { getProducts, getSingleProduct, getNintendoProducts, getPlaystationProducts, getXboxProducts, getDealProducts } = require("./db/products");
 app.use(express.json());
 
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
@@ -23,6 +23,30 @@ app.get("/api/products/:id", async (req, res) => {
   const singleProduct = await getSingleProduct(id);
   res.send(singleProduct);
 });
+
+app.get("/api/nintendo", async (req, res) => {
+  const nintendoProducts = await getNintendoProducts();
+  res.send(nintendoProducts);
+});
+
+app.get("/api/Playstation", async (req, res) => {
+  
+  const playstationProducts = await getPlaystationProducts();
+  res.send(playstationProducts);
+});
+
+app.get("/api/Xbox", async (req, res) => {
+  
+  const xboxProducts = await getXboxProducts();
+  res.send(xboxProducts);
+});
+
+app.get("/api/Deals", async (req, res) => {
+  
+  const dealProducts = await getDealProducts();
+  res.send(dealProducts);
+});
+
 
 app.use((err, req, res, next) => {
   console.log(err);
