@@ -58,10 +58,10 @@ const syncTables = async () => {
 const platformAdder = async () => {
   const [platformInsert] = await Promise.all([
     addPlatform({
-      name: "XBOX",
+      name: "Playstation",
     }),
     addPlatform({
-      name: "Playstation",
+      name: "Xbox",
     }),
     addPlatform({
       name: "Nintendo",
