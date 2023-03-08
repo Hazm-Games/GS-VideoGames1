@@ -66,10 +66,17 @@ const App = () => {
 
   return (
     <div>
+
       <Nav auth={auth} />
+
+    
+     
+      <Routes>
+
 
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
+
 
         <Route path="/nintendo" element={<NintendoProducts NintendoProducts={NintendoProducts} />} />
 
@@ -82,6 +89,12 @@ const App = () => {
         <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
 
         {auth.id ? (
+
+       
+
+        
+        
+ 
           <Route path="/" element={<Home auth={auth} />} />
         ) : (
           <Route path="/login" element={<Login login={login} />} />
