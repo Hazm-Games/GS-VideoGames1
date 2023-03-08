@@ -9,42 +9,35 @@ import NintendoProducts from "./Nintendo";
 import XboxProducts from "./Xbox";
 import PlaystationProducts from "./Playstation";
 import DealProducts from "./Deals";
+import Admin from "./Admin";
 
-
-
-
-const Search = ({ products })=> {
-  const { term } = useParams ();
+const Search = ({ products }) => {
+  const { term } = useParams();
   const navigate = useNavigate();
-  return ( 
+  return (
     <ul>
-    <input placeholder='search for games' 
-    onChange = {
-      (ev)=> {
-      navigate(`/products/search/${ev.target.value}`);
-      console.log(ev.target.value);
-      }
-    } />
-  {products.filter (product => {
-      return !term ||  product.name.includes(term)
-    }).map( product => {
-    return (
-  <li key={ product.id }>
-   {product.name}
-  </li>
-    );
-    })
-  }
-  </ul>
+      <input
+        placeholder="search for games"
+        onChange={(ev) => {
+          navigate(`/products/search/${ev.target.value}`);
+          console.log(ev.target.value);
+        }}
+      />
+      {products
+        .filter((product) => {
+          return !term || product.name.includes(term);
+        })
+        .map((product) => {
+          return <li key={product.id}>{product.name}</li>;
+        })}
+    </ul>
   );
-  };
-  
-  
-  
-  
+};
+
 const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
+  console.log(auth);
   const attemptLogin = () => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -97,27 +90,49 @@ const App = () => {
 
   return (
     <div>
-
-      <Nav auth={auth} />
-
+      <Nav auth={auth} logout={logout} />
 
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
 
+        <Route
+          path="/nintendo"
+          element={<NintendoProducts NintendoProducts={NintendoProducts} />}
+        />
 
-        <Route path="/nintendo" element={<NintendoProducts NintendoProducts={NintendoProducts} />} />
+        <Route
+          path="/playstation"
+          element={
+            <PlaystationProducts PlaystationProducts={PlaystationProducts} />
+          }
+        />
 
-        <Route path="/playstation" element={<PlaystationProducts PlaystationProducts={PlaystationProducts} />} />
+        <Route
+          path="/xbox"
+          element={<XboxProducts XboxProducts={XboxProducts} />}
+        />
 
-        <Route path="/xbox" element={<XboxProducts XboxProducts={XboxProducts} />} />
+        <Route
+          path="/deals"
+          element={<DealProducts DealProducts={DealProducts} />}
+        />
 
-        <Route path="/deals" element={<DealProducts DealProducts={DealProducts} />} />
+        <Route
+          path="/products/:id"
+          element={<SingleProduct singleProduct={SingleProduct} />}
+        />
 
-        <Route path="/products/:id" element={<SingleProduct singleProduct={SingleProduct} />} />
+        <Route
+          path="/products/search"
+          element={<Products products={products} />}
+        />
 
-        <Route path="/products/search" element={<Products products={products} />} />
+        <Route
+          path="/products/search/:term"
+          element={<Products products={products} />}
+        />
 
-        <Route path="/products/search/:term" element={<Products products={products} />} />
+        <Route path="/admin" element={<Admin admin={Admin} />} />
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />

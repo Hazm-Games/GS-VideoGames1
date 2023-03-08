@@ -11,6 +11,7 @@ app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "../static/index.html"))
 );
 
+
 app.use("/api/auth", require("./api/auth"));
 
 app.get("/api/products", async (req, res) => {
