@@ -339,7 +339,11 @@ margin-right: 250px;
   height: 75px;
 }
 
-
+.title {
+  margin-top: 50px;
+ margin-bottom: 30px;
+ text-align: center;
+}
 
 form {
   max-width: 500px;
