@@ -34,13 +34,15 @@ const getUserByUserName = async({username}) =>{
   const SQL =`
   SELECT *
   FROM users
-  WHERE username = $1
+  WHERE username = $1 password = $2
   `;
   const response = await client.query(SQL,[username]);
   const user = response.rows[0]
   return user
   
 }
+
+
 
 const authenticate = async({ username, password }) => {
   const SQL = `
