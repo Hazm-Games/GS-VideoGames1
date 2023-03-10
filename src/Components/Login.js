@@ -24,7 +24,11 @@ const Login = ({ login })=> {
           onChange = { ev => setPassword(ev.target.value) }
         />
         <button>Login</button>
+
+        <p className="smalltext">Don't have an account? <a href="register.html">Register</a></p>
+
         <p class="smalltext">Don't have an account? <Link to='/register'>Register</Link></p>
+
       </form>
     </div>
   );
