@@ -27,6 +27,22 @@ const Nav = (props) => {
 
           <div className="account-info">
             <div className="gap">
+
+            <Link>
+              <img
+                className="icon"
+                width="32px"
+                height="auto"
+                src="/static/Files/user-icon.png"
+                alt="user icon"
+              />
+            </Link>
+
+            <div>
+            <Link className="mwhite" to="/user">
+              Account
+            </Link>
+
               <Link>
                 <img
                   className="icon"
@@ -42,10 +58,22 @@ const Nav = (props) => {
                   Account
                 </Link>
               </div>
+
             </div>
 
             
       
+
+            <div className="gap">
+            <Link>
+              <img
+                width="32px"
+                height="auto"
+                src="/static/Files/shoppingCart.png"
+                alt="shopping cart"
+              />
+            </Link>
+
 
 
 

@@ -432,6 +432,73 @@ button:hover {
   object-fit: cover;
 }
 
+.cardBtn {
+  background-color: white;
+  color: black;
+  border: 2px solid rgb(203, 248, 40);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.cardBtn:hover {
+  background-color:  #333;
+  color: white;
+
+}
+
+.single-game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.game-image-container {
+  width: 50%;
+  margin-right: 50px;
+}
+
+.game-image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.game-details-container {
+  width: 50%;
+}
+
+.game-details-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.game-details-container p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.game-details-container button {
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.game-details-container button:hover {
+  background-color: #333;
+}
+
+
 
 
 @media(max-width: 768px) {
