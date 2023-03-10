@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
-const Register = ({ register })=> {
+const Register = ()=> {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const register = ()=>{
+        console.log('register')
+    }
     const _register = (ev)=> {
         ev.preventDefault();
         register({username, password});
@@ -21,6 +23,7 @@ const Register = ({ register })=> {
                 <input
                    placeholder='password'
                    value={ password } 
+                   type = 'password'
                    onChange = { ev => setPassword(ev.target.value) }
                 >
                 
