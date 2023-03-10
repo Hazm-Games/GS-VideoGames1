@@ -45,15 +45,7 @@ router.post('/register',async(req, res, next)=>{
      
      const token = await authenticate({username, password});
     res.send({ token });
-    //  const response = await () {
-    //   message:"Registered",
-    //   token:"TBD",
-    //   user:{
-    //     id: user.id,
-    //     username:user.username
-    //   },
-    //    return(response){}
-    //}
+   
      
   } 
      catch(error){

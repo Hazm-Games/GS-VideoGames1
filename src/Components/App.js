@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Home from "./Home";
 import Login from "./Login";
+import Register from "./Register";
 import Nav from "./Nav";
 import Products from "./Products";
 import { Link, Routes, Route, useNavigate, useParams } from "react-router-dom";
@@ -123,7 +124,9 @@ const App = () => {
           <Route path="/" element={<Home auth={auth} />} />
         ) : (
           <Route path="/login" element={<Login login={login} />} />
-        )}
+          ) (
+          <Route path="/register" element={<Register register={register} />} />
+          )}
       </Routes>
     </div>
   );
