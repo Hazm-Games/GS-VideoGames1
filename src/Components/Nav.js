@@ -1,8 +1,15 @@
+
+import React, {useEffect} from "react";
+import { Link } from "react-router-dom"
+
+const Nav = ({ auth, logout }) => {
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Nav = (props) => {
   const { auth, logout } = props;
+
 
   return (
     <div>
@@ -37,6 +44,11 @@ const Nav = (props) => {
               </div>
             </div>
 
+            
+      
+
+
+
             <div className="gap">
               <Link>
                 <img
@@ -53,6 +65,10 @@ const Nav = (props) => {
                 </Link>
               </div>
             </div>
+
+           
+
+
           </div>
         </div>
 
