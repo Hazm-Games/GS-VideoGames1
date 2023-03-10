@@ -22,7 +22,7 @@ const Nav = (props) => {
             <Link className="logo" to="/">
               <img
                 className="logo"
-                src="../../static/Files/updateLogo1.png"
+                src="/static/Files/updateLogo1.png"
                 alt="Site logo"
               />
             </Link>
@@ -35,7 +35,7 @@ const Nav = (props) => {
                 className="icon"
                 width="32px"
                 height="auto"
-                src="../../static/Files/user-icon.png"
+                src="/static/Files/user-icon.png"
                 alt="user icon"
               />
             </Link>
@@ -54,7 +54,7 @@ const Nav = (props) => {
               <img
                 width="32px"
                 height="auto"
-                src="../../static/Files/shoppingCart.png"
+                src="/static/Files/shoppingCart.png"
                 alt="shopping cart"
               />
             </Link>
