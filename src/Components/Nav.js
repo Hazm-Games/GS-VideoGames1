@@ -4,13 +4,6 @@ import { Link } from "react-router-dom"
 
 const Nav = ({ auth, logout }) => {
 
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-
-const Nav = (props) => {
-  const { auth, logout } = props;
-
-
   return (
     <div>
       <header>
@@ -27,22 +20,6 @@ const Nav = (props) => {
 
           <div className="account-info">
             <div className="gap">
-
-            <Link>
-              <img
-                className="icon"
-                width="32px"
-                height="auto"
-                src="/static/Files/user-icon.png"
-                alt="user icon"
-              />
-            </Link>
-
-            <div>
-            <Link className="mwhite" to="/user">
-              Account
-            </Link>
-
               <Link>
                 <img
                   className="icon"
@@ -60,23 +37,8 @@ const Nav = (props) => {
               </div>
 
             </div>
-
             
       
-
-            <div className="gap">
-            <Link>
-              <img
-                width="32px"
-                height="auto"
-                src="/static/Files/shoppingCart.png"
-                alt="shopping cart"
-              />
-            </Link>
-
-
-
-
             <div className="gap">
               <Link>
                 <img
@@ -95,8 +57,6 @@ const Nav = (props) => {
             </div>
 
            
-
-
           </div>
         </div>
 
@@ -137,6 +97,11 @@ const Nav = (props) => {
       </header>
     </div>
   );
+
+
+
+ 
+  
 };
 
 export default Nav;

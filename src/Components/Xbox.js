@@ -19,17 +19,26 @@ const Xbox = ({}) => {
       }, []);
 
     return (
-      <ul>
+      <div className="games-shelf">
+      <ul className="game-grid">
         {xboxProducts.map((xboxProduct) => {
           return (
-            <li key={xboxProduct.id}>
-              <h3>
-              <Link to={`/products/${xboxProduct.id}`}>{xboxProduct.name}</Link>
-              </h3>
-            </li>
+           
+            <Link to={`/products/${xboxProduct.id}`}> 
+             <div className="game-card">
+             <img src={xboxProduct.image_url} />
+              
+             {xboxProduct.name}
+              
+              <p>${xboxProduct.price}</p>
+              <a className="cardBtn">Tell me more!</a>
+            </div>
+            </Link>
+          
           );
         })}
       </ul>
+      </div>
     );
   };
 

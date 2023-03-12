@@ -19,18 +19,32 @@ const Deals = ({}) => {
       }, []);
 
     return (
-      <ul>
+      
+      <div className="games-shelf">
+        <h1 className="shelf-heading">OUR BEST DEALS</h1>
+      <ul className="game-grid">
+     
         {dealProducts.map((dealProduct) => {
            
           return (
-            <li key={dealProduct.id}>
+            <Link to={`/products/${dealProduct.id}`}>
+            <div className="game-card">
+
+              <img className="sale-icon" src="../static/Files/sale.png" />
+           
+            <img src={dealProduct.image_url} />
               <h3>
               <Link to={`/products/${dealProduct.id}`}>{dealProduct.name}</Link>
               </h3>
-            </li>
+              <p>${dealProduct.price}</p>
+            
+           
+            </div>
+            </Link>
           );
         })}
       </ul>
+      </div>
     );
   };
 

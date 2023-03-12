@@ -106,10 +106,8 @@ const App = () => {
     <div>
 
 
-      <Nav auth={ auth } logout={ logout }/>
-
-
-      <Nav auth={auth} logout={logout} />
+      
+<Nav auth={auth} logout={logout} />
 
 
       <Routes>
