@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
-const Register = ()=> {
+const Register = ({register})=> {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const register = ()=>{
-        console.log('register')
-    }
+    
+
+    
+    
     const _register = (ev)=> {
         ev.preventDefault();
         register({username, password});
@@ -29,7 +30,7 @@ const Register = ()=> {
                 
                 </input>
 
-                <button>Register</button>
+                <button type = "submit">Register</button>
                 
 
             </form>
