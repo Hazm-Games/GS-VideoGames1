@@ -2,7 +2,15 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom"
 
-const Nav = ({ auth, logout }) => {
+
+
+
+
+
+const Nav = (props) => {
+  const { auth, logout } = props;
+
+
 
   return (
     <div>
