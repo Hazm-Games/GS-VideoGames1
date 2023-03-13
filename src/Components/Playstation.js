@@ -31,7 +31,7 @@ const Playstation = ({}) => {
              {playstationProduct.name}
               
               <p>${playstationProduct.price}</p>
-              <a class="cardBtn">Tell me more!</a>
+              <a className="cardBtn">Tell me more!</a>
             </div>
             </Link>
           
