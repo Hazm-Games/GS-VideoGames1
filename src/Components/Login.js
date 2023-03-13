@@ -19,6 +19,7 @@ const Login = ({ login })=> {
           onChange = { ev => setUsername(ev.target.value) }
           />
         <input
+          type='password'
           placeholder='password'
           value={ password }
           onChange = { ev => setPassword(ev.target.value) }

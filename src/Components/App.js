@@ -11,6 +11,8 @@ import XboxProducts from "./Xbox";
 import PlaystationProducts from "./Playstation";
 import DealProducts from "./Deals";
 import Admin from "./Admin";
+import User from "./User";
+
 
 const Search = ({ products }) => {
   const { term } = useParams();
@@ -39,8 +41,10 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
 
+
   const location = useLocation();
   const navigate = useNavigate();
+
 
   console.log(auth);
 
@@ -55,14 +59,28 @@ const App = () => {
       })
         .then((response) => response.json())
         .then((user) => setAuth(user));
-    }
-  };
+    }};
 
 
 
   useEffect(() => {
     attemptLogin();
   }, []);
+
+ /*  useEffect(() => {
+    if (token) {
+      fetch("/api/user/", {
+        method: "GET",
+        headers: {
+          authorization: token,
+        },
+      })
+      .then((response) => response.json())
+      .then((userInfo) => {
+        setUserInfo(userInfo);
+      });
+  }, []);
+ */
 
   useEffect(() => {
     fetch("/api/products")
@@ -175,6 +193,8 @@ const App = () => {
         />
 
         <Route path="/admin" element={<Admin admin={Admin} />} />
+
+        <Route path="/user" element={<User User={User} />} />
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
