@@ -9,7 +9,6 @@ const createUser = async({ username, password, isAdmin }) => {
     VALUES($1, $2, $3) RETURNING *
   `;
   const response = await client.query(SQL, [ username, password, isAdmin ]);
-  console.log(response)
   return response.rows[0];
 }
 
@@ -35,7 +34,7 @@ const getUserByUserName = async({username}) =>{
   const SQL =`
   SELECT *
   FROM users
-  WHERE username = $1 password = $2
+  WHERE username = $1 
   `;
   const response = await client.query(SQL,[username]);
   const user = response.rows[0]
