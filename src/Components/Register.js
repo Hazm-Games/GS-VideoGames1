@@ -13,7 +13,7 @@ const Register = ({register})=> {
     };
     return(
         <div>
-            <h2>Register</h2>
+            <h1 className="title">Register a new account!</h1>
             <form onSubmit={_register}>
                 <input
                 placeholder='username'

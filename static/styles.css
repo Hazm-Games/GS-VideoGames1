@@ -228,13 +228,13 @@ main {
     margin-right: 30px;
   }
 
-
-
-
-
 input {
   width: 480px;
+}
 
+.shelf-heading{
+  margin-top: 100px;
+ 
 }
 
 
@@ -401,6 +401,14 @@ button:hover {
   color: white;
 }
 
+.search-title{
+  margin-top: 50px
+}
+
+.games-shelf{
+  align-items: center;
+}
+
 .game-grid {
   margin-top: 34px;
   display: grid;
@@ -409,11 +417,10 @@ button:hover {
  grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
 
-  
-
 }
 
 .game-card {
+  position: relative;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin: 36px 5px 36px 5px;
@@ -427,8 +434,6 @@ button:hover {
 }
 
 .game-card img {
-  width: 100%;
-  height: 250px;
   object-fit: cover;
 }
 
@@ -497,6 +502,146 @@ button:hover {
 .game-details-container button:hover {
   background-color: #333;
 }
+
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.footer-links ul {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #007bff;
+}
+
+
+.footer-links ul li a:hover {
+  color: #007bff;
+}
+
+.footer-social ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-social ul li {
+  margin: 0 10px;
+}
+
+.footer-social ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 20px;
+}
+
+.footer-social ul li a:hover {
+  color: #007bff;
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.fab {
+  color: whitesmoke;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 50px auto;
+  max-width: 1200px;
+}
+
+.left-column {
+  flex-basis: 60%;
+  margin-right: 50px;
+}
+
+.right-column {
+  flex-basis: 35%;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.order-summary {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.delivery-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], textarea {
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sale-icon {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}
+
 
 
 

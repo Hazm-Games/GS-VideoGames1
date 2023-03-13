@@ -5,7 +5,9 @@ const Products = ({ products }) => {
   const navigate = useNavigate();
   const { term } = useParams();
   return (
+  
     <ul>
+     <h2 className="search-title">Search for a game</h2>
       <input
         placeholder="search for games"
         onChange={(ev) => {

@@ -19,17 +19,26 @@ const Nintendo = ({}) => {
       }, []);
 
     return (
-      <ul>
+      <div className="games-shelf">
+      <ul className="game-grid">
         {nintendoProducts.map((nintendoProduct) => {
           return (
-            <li key={nintendoProduct.id}>
-              <h3>
-              <Link to={`/products/${nintendoProduct.id}`}>{nintendoProduct.name}</Link>
-              </h3>
-            </li>
+           
+            <Link to={`/products/${nintendoProduct.id}`}> 
+             <div className="game-card">
+             <img src={nintendoProduct.image_url} />
+              
+             {nintendoProduct.name}
+              
+              <p>${nintendoProduct.price}</p>
+              <a className="cardBtn">Tell me more!</a>
+            </div>
+            </Link>
+          
           );
         })}
       </ul>
+      </div>
     );
   };
 
