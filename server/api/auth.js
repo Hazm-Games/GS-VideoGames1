@@ -20,7 +20,7 @@ router.post('/', async(req, res, next)=> {
 
 router.post('/register',async(req, res, next)=>{
    const {username,password} = req.body
-   
+
   try{
      const user = await getUserByUserName({username,password})
      if(!(user)){
