@@ -95,6 +95,28 @@ const App = () => {
         }
       });
   };
+     
+
+  const register = async ({ username}) => {
+    fetch("/api/auth/", {
+      method: "POST",
+      body: JSON.stringify({ username }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.token) {
+          window.localStorage.setItem("token", data.token);
+          attemptRegister();
+        } else {
+          console.log(data);
+        }
+      });
+  };
+
+
 
   return (
     <div>

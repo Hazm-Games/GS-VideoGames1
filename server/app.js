@@ -7,6 +7,14 @@ app.use(express.json());
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
 app.use("/static", express.static(path.join(__dirname, "../static")));
 
+app.get('/form',(req,res)=>{
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.post('/formPost',(req,res)=>{
+  console.log(req.body);
+})
+
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "../static/index.html"))
 );
