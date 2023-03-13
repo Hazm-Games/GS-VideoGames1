@@ -21,7 +21,7 @@ router.post('/', async(req, res, next)=> {
 router.post('/register',async(req, res, next)=>{
   try{
    const {username,password} = req.body
-   
+   console.log(username,password)
   
      const _user = await getUserByUserName({username})
      if(_user){
@@ -41,7 +41,7 @@ router.post('/register',async(req, res, next)=>{
       })
       return
      }
-     const user = await createUser({username, password})
+     await createUser({username, password})
      
      const token = await authenticate({username, password});
     res.send({ token });
