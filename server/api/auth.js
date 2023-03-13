@@ -19,24 +19,41 @@ router.post('/', async(req, res, next)=> {
 });
 
 router.post('/register',async(req, res, next)=>{
-   const {username,password} = req.body
-
   try{
-     const user = await getUserByUserName({username,password})
-     if(!(user)){
-      error:"Username Taken",
-      res.status(400).send("User Already Exist.Please Login"),
-      
+   const {username,password} = req.body
+   
+  
+     const _user = await getUserByUserName({username})
+     if(_user){
+      res.send({
+        error:"Username Taken",
+        message:"User ${username} is already taken.Please login or try a different username.",
+        name:"Username Taken"
+      }) 
+      return
      }
 
-     if(user){
-      return res.status(409)()
+     if(password.length<8){
+      res.send({
+        error:"Password Too Short!",
+        message:"Password is too short must have at least 8 character",
+        name:"Password Too Short!"
+      })
+      return
      }
-  }
-  catch(ex){
-    next(ex);
-  }
-});
+     const user = await createUser({username, password})
+     
+     const token = await authenticate({username, password});
+    res.send({ token });
+   
+     
+  } 
+     catch(error){
+      next(error);
+     }
+  })
+
+
      //check if user exists. If so, send an error message
      // otherwise, create a new user with the createUser function (from ../db/User.js)
      // after creating a user, create a token with jwt.sign()

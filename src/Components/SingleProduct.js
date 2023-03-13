@@ -17,16 +17,23 @@ const SingleProduct = ({}) => {
   }, []);
 
   return (
-    <ul>
-      <img src={singleProduct.image_url} />
+    <div class="single-game-container">
 
-      <li>{singleProduct.name}</li>
-      <li>{singleProduct.description}</li>
-      <li>{singleProduct.price}</li>
-      <li>{singleProduct.condition}</li>
-      <li>{singleProduct.platform_id}</li>
-      <li>{singleProduct.onSale}</li>
-    </ul>
+      <div class="game-image-container">
+      <img src={singleProduct.image_url} />
+      </div>
+
+      <div class="game-details-container">
+
+      <h1>{singleProduct.name}</h1>
+      <p>{singleProduct.description}</p>
+      <p>Price: ${singleProduct.price}</p>
+      <p>Condition: {singleProduct.condition}</p>
+      <p>{singleProduct.onSale}</p>
+      <button>Add to Cart</button>
+
+      </div>
+    </div>
   );
 };
 

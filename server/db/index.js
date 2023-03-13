@@ -17,7 +17,8 @@ const syncTables = async () => {
   CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    "isAdmin" BOOLEAN DEFAULT false
   );
   CREATE TABLE platform(
     id  SERIAL  PRIMARY KEY,
@@ -82,6 +83,12 @@ const syncAndSeed = async () => {
         username: "lucy",
         password: "lucy_password",
       }),
+      createUser({
+        username: "admin",
+        password: "adminPassword",
+        isAdmin: true
+      }),
+
     ]);
     await createCart( 1 );
     await createCart( 2 );
