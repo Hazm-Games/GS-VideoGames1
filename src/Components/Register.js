@@ -22,7 +22,7 @@ const Register = ({register})=> {
                 >
                 </input>
                 <input
-                   placeholder='password'
+                   placeholder= 'password'
                    value={ password } 
                    type = 'password'
                    onChange = { ev => setPassword(ev.target.value) }

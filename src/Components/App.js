@@ -123,7 +123,7 @@ const App = () => {
   };
      
 
-  const register = async ({ username, password}) => {
+  const register = async ({ username, password }) => {
     fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify({ username, password }),
