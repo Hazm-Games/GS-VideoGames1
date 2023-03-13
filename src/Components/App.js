@@ -58,6 +58,8 @@ const App = () => {
     }
   };
 
+
+
   useEffect(() => {
     attemptLogin();
   }, []);
@@ -103,10 +105,10 @@ const App = () => {
   };
      
 
-  const register = async ({ username}) => {
-    fetch("/api/auth/", {
+  const register = async ({ username, password}) => {
+    fetch("/api/auth/register", {
       method: "POST",
-      body: JSON.stringify({ username }),
+      body: JSON.stringify({ username, password }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -115,7 +117,7 @@ const App = () => {
       .then((data) => {
         if (data.token) {
           window.localStorage.setItem("token", data.token);
-          attemptRegister();
+          attemptLogin();
         } else {
           console.log(data);
         }
@@ -183,7 +185,7 @@ const App = () => {
           ) 
           
           }
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={< Register register={register}/> } />
           
       </Routes>
     </div>
