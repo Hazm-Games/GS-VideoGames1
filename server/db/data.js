@@ -169,7 +169,7 @@ const games = [
   "name": "Halo: The Master Chief Collection",
   "description": "THE SEEDS OF OUR FUTURE ARE SOWN IN HIS PAST. For the first time ever, The Master Chief's entire story is on one console. Featuring a re-mastered Halo 2: Anniversary, along with Halo: Combat Evolved Anniversary, Halo 3, Halo 4, and new digital series, Halo: Nightfall, this is the definitive Halo experience.",
   "price": "29.99",
-  "image_url": "https://i.ibb.co/8XLC7Qh/Screen-Shot-2023-02-27-at-9-58-26-PM.png",
+  "image_url": "https://i.ibb.co/3NcZGRN/Screen-Shot-2023-02-28-at-7-30-50-PM.png",
   "condition": "used",
   "platform_id": "2",
   "onSale": "false"

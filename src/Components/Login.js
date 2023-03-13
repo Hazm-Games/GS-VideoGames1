@@ -26,9 +26,8 @@ const Login = ({ login })=> {
         />
         <button>Login</button>
 
-        <p className="smalltext">Don't have an account? <a href="register.html">Register</a></p>
+     <p className="smalltext">Don't have an account? <Link to='/register'>Register</Link></p>
 
-        <p class="smalltext">Don't have an account? <Link to='/register'>Register</Link></p>
 
       </form>
     </div>

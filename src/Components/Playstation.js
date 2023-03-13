@@ -19,17 +19,26 @@ const Playstation = ({}) => {
       }, []);
 
     return (
-      <ul>
+      <div className="games-shelf">
+      <ul className="game-grid">
         {playstationProducts.map((playstationProduct) => {
           return (
-            <li key={playstationProduct.id}>
-              <h3>
-              <Link to={`/products/${playstationProduct.id}`}>{playstationProduct.name}</Link>
-              </h3>
-            </li>
+           
+            <Link to={`/products/${playstationProduct.id}`}> 
+             <div className="game-card">
+             <img src={playstationProduct.image_url} />
+              
+             {playstationProduct.name}
+              
+              <p>${playstationProduct.price}</p>
+              <a className="cardBtn">Tell me more!</a>
+            </div>
+            </Link>
+          
           );
         })}
       </ul>
+      </div>
     );
   };
 

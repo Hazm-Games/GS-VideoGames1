@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 
-const Register = ()=> {
+const Register = ({register})=> {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const register = ()=>{
-        console.log('register')
-    }
+    
+
+    
+    
     const _register = (ev)=> {
         ev.preventDefault();
         register({username, password});
     };
     return(
         <div>
-            <h2>Register</h2>
+            <h1 className="title">Register a new account!</h1>
             <form onSubmit={_register}>
                 <input
                 placeholder='username'
@@ -29,7 +30,7 @@ const Register = ()=> {
                 
                 </input>
 
-                <button>Register</button>
+                <button type = "submit">Register</button>
                 
 
             </form>

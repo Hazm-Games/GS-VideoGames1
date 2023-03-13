@@ -4,7 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Nav from "./Nav";
 import Products from "./Products";
-import { Link, Routes, Route, useNavigate, useParams } from "react-router-dom";
+import { Link, Routes, Route, useNavigate, useParams, useLocation } from "react-router-dom";
 import SingleProduct from "./SingleProduct";
 import NintendoProducts from "./Nintendo";
 import XboxProducts from "./Xbox";
@@ -40,8 +40,14 @@ const Search = ({ products }) => {
 const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
-  // const [userInfo, setUserInfo] = useState([]);
+
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+
   console.log(auth);
+
   const attemptLogin = () => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -54,6 +60,8 @@ const App = () => {
         .then((response) => response.json())
         .then((user) => setAuth(user));
     }};
+
+
 
   useEffect(() => {
     attemptLogin();
@@ -82,9 +90,17 @@ const App = () => {
       });
   }, []);
 
+  useEffect(()=> {
+    const path = location.pathname;
+    if(path === '/login' && auth.id){
+      navigate('/');
+    }
+  }, [auth]);
+
   const logout = () => {
     window.localStorage.removeItem("token");
     setAuth({});
+    navigate('/login');
   };
 
   const login = async ({ username, password }) => {
@@ -105,10 +121,36 @@ const App = () => {
         }
       });
   };
+     
+
+  const register = async ({ username, password}) => {
+    fetch("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.token) {
+          window.localStorage.setItem("token", data.token);
+          attemptLogin();
+        } else {
+          console.log(data);
+        }
+      });
+  };
+
+
 
   return (
     <div>
-      <Nav auth={auth} logout={logout} />
+
+
+      
+<Nav auth={auth} logout={logout} />
+
 
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
@@ -161,7 +203,7 @@ const App = () => {
           ) 
           
           }
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={< Register register={register}/> } />
           
       </Routes>
     </div>
