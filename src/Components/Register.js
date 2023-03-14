@@ -30,7 +30,7 @@ const Register = ({register})=> {
                 
                 </input>
 
-                <button type = "submit">Register</button>
+                <button type = "submit" className='home'>Register</button>
                 
 
             </form>

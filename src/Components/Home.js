@@ -12,7 +12,7 @@ const Home = () => {
         <div className="hero-text">
           <h1>Shop at HAZM GAMES SITE</h1>
           <p>The only place to find the best games!</p>
-          <Link to='/products'><button>Browse games</button></Link>
+          <Link to='/products'><button className="home">Browse games</button></Link>
         </div>
       </div>
 
