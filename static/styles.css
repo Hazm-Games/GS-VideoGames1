@@ -90,7 +90,7 @@ nav ul .fab {
   flex: 1;
   text-align: center;
   list-style: none;
-  margin: 0 10px;
+  margin: 10px 10px;
 }
 
 nav li {
@@ -186,6 +186,7 @@ clear: both;
   width: 300px;
   
 }
+
 
 .loginBtn {
   background-color: white;
@@ -392,10 +393,11 @@ input[type="submit"]:hover {
 }
 
 button {
+  display:flex;
   background-color: white;
   color: black;
   border: 2px solid rgb(203, 248, 40);
-  padding: 10px 20px;
+  padding: 10px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -403,7 +405,7 @@ button {
   border-radius: 20px;
   margin: 4px 2px;
   cursor: pointer;
-  width: 500px;
+  width: 100%;
 }
 
 button:hover {
