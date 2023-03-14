@@ -17,6 +17,7 @@ body {
 }
 
 header {
+ 
   background-color: #333;
   color: #fff;
   padding: 20px;
@@ -59,6 +60,16 @@ text-align: center;
   background-color: #555;
   color: white;
 }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 84%;
+  margin-top: 120px;
+  flex-direction: row;
+  flex-flow: wrap;
+  
+}
 
 
 nav ul {
@@ -68,16 +79,36 @@ nav ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 100%;
   width: 100%;
   transform: translate(5%, -3%);
+  flex-direction: row;
+  flex-flow: wrap;
 }
 
-nav ul li {
+nav ul .fab {
   flex: 1;
   text-align: center;
   list-style: none;
   margin: 0 10px;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+  
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+nav img {
+  max-width: 200px;
+  margin-bottom: 0;
 }
 
 .fab {
@@ -172,16 +203,7 @@ clear: both;
 
 
 }
-nav li {
-  display: inline-block;
-  margin-right: 20px;
-  
-}
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-}
 
 main {
   max-width: 800px;
@@ -258,19 +280,7 @@ footer {
   font-family: sans-serif;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 84%;
-  margin-top: 120px;
- 
-}
 
-nav img {
-  max-width: 200px;
-  margin-bottom: 0;
-}
 
 .hamburger {
   display: none;
@@ -538,13 +548,10 @@ footer {
 }
 
 .footer-links ul li a:hover {
-  color: #007bff;
+  color: rgb(203, 248, 40);;
 }
 
 
-.footer-links ul li a:hover {
-  color: #007bff;
-}
 
 .footer-social ul {
   display: flex;
@@ -567,7 +574,7 @@ footer {
 }
 
 .footer-social ul li a:hover {
-  color: #007bff;
+  color: rgb(203, 248, 40);
 }
 
 .footer-bottom {
@@ -580,6 +587,8 @@ footer {
 .fab {
   color: whitesmoke;
 }
+
+
 
 .container {
   display: flex;
