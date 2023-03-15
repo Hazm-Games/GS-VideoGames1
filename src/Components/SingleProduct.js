@@ -17,20 +17,20 @@ const SingleProduct = ({}) => {
   }, []);
 
   return (
-    <div class="single-game-container">
+    <div className="single-game-container">
 
-      <div class="game-image-container">
+      <div className="game-image-container">
       <img src={singleProduct.image_url} />
       </div>
 
-      <div class="game-details-container">
+      <div className="game-details-container">
 
       <h1>{singleProduct.name}</h1>
       <p>{singleProduct.description}</p>
       <p>Price: ${singleProduct.price}</p>
       <p>Condition: {singleProduct.condition}</p>
       <p>{singleProduct.onSale}</p>
-      <button>Add to Cart</button>
+      <button className="addtocartBtn">Add to Cart</button>
 
       </div>
     </div>
