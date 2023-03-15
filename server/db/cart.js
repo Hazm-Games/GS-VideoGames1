@@ -1,10 +1,13 @@
 const client = require("./client");
 
 //function to create a new cart
-const createCart = async (user_id) => {
+const createCart = async ({userId}) => {
   try {
-    const SQL = `INSERT INTO cart (user_id) VALUES ($1) RETURNING *;`;
-    const response = await client.query(SQL, [user_id]);
+    const SQL = 
+    `INSERT INTO cart (user_id)
+     VALUES ($1)
+     RETURNING *`;
+    const response = await client.query(SQL, [userId]);
     return response.rows[0];
   } catch (error) {
     console.error(error);
@@ -13,20 +16,22 @@ const createCart = async (user_id) => {
 };
 
 // get cart by user id
-const getCartByUserId = async ({ user_id }) => {
+const getCartByUserId = async ({ userId }) => {
   const SQL = `
     SELECT * FROM cart
     WHERE user_id = $1 AND is_purchased= true;
   `;
-  const response = await client.query(SQL, [user_id]);
+  const response = await client.query(SQL, [userId]);
+  console.log(response)
   const cart = response.rows[0];
+  console.log(cart)
   // get products, and attach to cart
   const productsSQL = `
   SELECT * FROM cart_products
   LEFT JOIN products ON cart_products.product_id = products.id
   WHERE cart_products.cart_id = $1
   `;
-  const productsResponse = await client.query(productsSQL, [cart_id]);
+  const productsResponse = await client.query(productsSQL, [cart.id]);
   cart.products = productsResponse.rows;
   return cart;
 };
