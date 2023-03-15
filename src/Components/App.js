@@ -11,6 +11,7 @@ import XboxProducts from "./Xbox";
 import PlaystationProducts from "./Playstation";
 import DealProducts from "./Deals";
 import Admin from "./Admin";
+import Cart from "./Cart";
 
 const Search = ({ products }) => {
   const { term } = useParams();
@@ -38,7 +39,7 @@ const Search = ({ products }) => {
 const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
-
+  const [ cart, setCart] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -53,10 +54,18 @@ const App = () => {
           authorization: token,
         },
       })
-        .then((response) => response.json())
-        .then((user) => setAuth(user));
+      .then((response) => response.json())
+        .then((user) => {
+          setAuth(user);
+          fetch(`/api/cart/${user_id}`)
+            .then((response) => response.json())
+            .then((cart) => setCart(cart));
+        });
     }
   };
+       
+    
+
 
 
 
@@ -137,6 +146,8 @@ const App = () => {
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
 
+        <Route path="/cart" element={< Cart Cart={Cart} setCart={setCart}/> } />
+
         <Route
           path="/nintendo"
           element={<NintendoProducts NintendoProducts={NintendoProducts} />}
@@ -184,6 +195,8 @@ const App = () => {
           
           }
           <Route path="/register" element={< Register register={register}/> } />
+
+          
           
       </Routes>
     </div>

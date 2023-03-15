@@ -36,9 +36,9 @@ const syncTables = async () => {
     );
    CREATE TABLE cart(
     id  SERIAL  PRIMARY KEY,
-    "userId" INTEGER NOT NULL REFERENCES Users(id),
+    user_id INTEGER NOT NULL REFERENCES Users(id),
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    "isPurchased" BOOLEAN DEFAULT false
+    is_purchased BOOLEAN DEFAULT false
    );
    CREATE TABLE cart_Products(
     id  SERIAL  PRIMARY KEY,
