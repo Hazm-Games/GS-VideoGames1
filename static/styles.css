@@ -15,9 +15,11 @@ body {
 }
 
 header {
+  width: 100%;
   background-color: #333;
   color: #fff;
   padding: 20px;
+  border-radius: 0% 100% 22% 78% / 100% 0% 100% 0% ;
 
   box-shadow: rgba(203, 248, 40, 0.4) 0px 5px, rgba(203, 248, 40, 0.3) 0px 10px,
     rgba(203, 248, 40, 0.2) 0px 15px, rgba(245, 188, 0, 0.1) 0px 20px,
@@ -56,6 +58,16 @@ header {
   background-color: #555;
   color: white;
 }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 84%;
+  margin-top: 120px;
+  flex-direction: row;
+  flex-flow: wrap;
+  
+}
 
 nav ul {
   margin: 0;
@@ -64,16 +76,36 @@ nav ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 100%;
   width: 100%;
   transform: translate(5%, -3%);
+  flex-direction: row;
+  flex-flow: wrap;
 }
 
-nav ul li {
+nav ul .fab {
   flex: 1;
   text-align: center;
   list-style: none;
-  margin: 0 10px;
+  margin: 10px 10px;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+  
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+nav img {
+  max-width: 200px;
+  margin-bottom: 0;
 }
 
 .fab {
@@ -147,6 +179,7 @@ h1 {
   width: 300px;
 }
 
+
 .loginBtn {
   background-color: white;
   color: black;
@@ -161,15 +194,12 @@ h1 {
   cursor: pointer;
   width: 175px;
 }
+
 nav li {
   display: inline-block;
   margin-right: 20px;
 }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-}
 
 main {
   max-width: 800px;
@@ -243,6 +273,7 @@ footer {
   font-family: sans-serif;
 }
 
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -252,10 +283,6 @@ nav {
   text-decoration: none;
 }
 
-nav img {
-  max-width: 200px;
-  margin-bottom: 0;
-}
 
 .hamburger {
   display: none;
@@ -371,20 +398,29 @@ input[type="submit"]:hover {
   background-color: #3e8e41;
 }
 
+
 button {
   background-color: #333;
+
   color: rgb(156, 240, 10);
+
+
+.home{
+  display:flex;
+  background-color: white;
+  color: black;
   border: 2px solid rgb(203, 248, 40);
-  padding: 10px 20px;
+  padding: 10px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   border-radius: 20px;
-  margin: 4px 2px;
+  margin: 4px 15px;
   cursor: pointer;
-  width: 500px;
+  width: 475px;
 }
+
 
 button:hover {
   background-color: #333;
@@ -393,6 +429,36 @@ button:hover {
 
 .search-title {
   margin-top: 50px;
+
+.home:hover {
+  background-color:  #333;
+  color: white;
+}
+
+.addtocartBtn{
+  display:flex;
+  background-color: white;
+  color: black;
+  border: 2px solid rgb(203, 248, 40);
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 20px;
+  margin: 4px 25px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.addtocartBtn:hover {
+  background-color:  #333;
+  color: white;
+}
+
+
+.search-title{
+  margin-top: 50px
 }
 
 .games-shelf {
@@ -526,12 +592,14 @@ footer {
 }
 
 .footer-links ul li a:hover {
-  color: #007bff;
+  color: rgb(203, 248, 40);;
 }
+
 
 .footer-links ul li a:hover {
   color: #007bff;
 }
+
 
 .footer-social ul {
   display: flex;
@@ -554,7 +622,7 @@ footer {
 }
 
 .footer-social ul li a:hover {
-  color: #007bff;
+  color: rgb(203, 248, 40);
 }
 
 .footer-bottom {
@@ -567,6 +635,8 @@ footer {
 .fab {
   color: whitesmoke;
 }
+
+
 
 .container {
   display: flex;
