@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const { getCartByUserId, createCart, deleteCartProduct, updateCartProductQuantity, purchaseCart, addProductToCart } = require("./db/cart");
 const { getProducts, getSingleProduct, getNintendoProducts, getPlaystationProducts, getXboxProducts, getDealProducts } = require("./db/products");
+const {getUserByToken} = require("./db/User") 
 app.use(express.json());
 
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
@@ -25,7 +26,7 @@ app.get("/api/products", async (req, res) => {
 
 app.get('/api/cart/:userId', async (req, res) => {
   const { userId } = req.params;
-  const cart = await getCartByUserId({ user_id });
+  const cart = await getCartByUserId({ userId });
   res.send(cart);
 });
 
