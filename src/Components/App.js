@@ -12,6 +12,8 @@ import PlaystationProducts from "./Playstation";
 import DealProducts from "./Deals";
 import Admin from "./Admin";
 import Cart from "./Cart";
+import DisplayUser from "./User";
+
 
 const Search = ({ products }) => {
   const { term } = useParams();
@@ -43,6 +45,7 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+
   console.log(auth);
 
   const attemptLogin = () => {
@@ -73,6 +76,21 @@ const App = () => {
     attemptLogin();
   }, []);
 
+ /*  useEffect(() => {
+    if (token) {
+      fetch("/api/user/", {
+        method: "GET",
+        headers: {
+          authorization: token,
+        },
+      })
+      .then((response) => response.json())
+      .then((userInfo) => {
+        setUserInfo(userInfo);
+      });
+  }, []);
+ */
+
   useEffect(() => {
     fetch("/api/products")
       .then((response) => response.json())
@@ -87,6 +105,7 @@ const App = () => {
       navigate('/');
     }
   }, [auth]);
+  console.log(auth)
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -114,7 +133,7 @@ const App = () => {
   };
      
 
-  const register = async ({ username, password}) => {
+  const register = async ({ username, password }) => {
     fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -186,6 +205,8 @@ const App = () => {
         />
 
         <Route path="/admin" element={<Admin admin={Admin} />} />
+
+        <Route path="/user" element={<DisplayUser DisplayUser={DisplayUser} />} />
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />

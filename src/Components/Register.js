@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useNavigate } from 'react';
 
 const Register = ({register})=> {
     const [username, setUsername] = useState('');
@@ -22,7 +22,7 @@ const Register = ({register})=> {
                 >
                 </input>
                 <input
-                   placeholder='password'
+                   placeholder= 'password'
                    value={ password } 
                    type = 'password'
                    onChange = { ev => setPassword(ev.target.value) }
@@ -30,7 +30,7 @@ const Register = ({register})=> {
                 
                 </input>
 
-                <button type = "submit">Register</button>
+                <button type = "submit" className='home'>Register</button>
                 
 
             </form>
