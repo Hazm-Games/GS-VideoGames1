@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+
 const DisplayUser = ({ updateUser }) => {
   const [userDetails, setUserDetails] = useState({});
   const [email, setEmail] = useState('');
@@ -15,6 +16,7 @@ const DisplayUser = ({ updateUser }) => {
     updateUser({ username, email, phoneNumber});
   };
   
+
   useEffect(() => {
     fetch("/api/auth/", {
       method: "GET",
@@ -31,6 +33,7 @@ const DisplayUser = ({ updateUser }) => {
 
   return (
     <ul>
+
     <h1 style={{fontSize:'30px'}}>Account Details </h1>
     <p style={{textAlign:'center'}}>Username</p>
     <form onSubmit={ _displayUser }>
@@ -55,6 +58,7 @@ const DisplayUser = ({ updateUser }) => {
     </form>
    
  
+
     </ul>
   );
 };

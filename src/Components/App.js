@@ -11,8 +11,10 @@ import XboxProducts from "./Xbox";
 import PlaystationProducts from "./Playstation";
 import DealProducts from "./Deals";
 import Admin from "./Admin";
+import Cart from "./Cart";
 import DisplayUser from "./User";
 import Modal from "./Modal";
+
 
 
 //  const Search = ({ products }) => {
@@ -41,7 +43,14 @@ import Modal from "./Modal";
 const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
+  const [ cart, setCart] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({});
+
+  console.log(auth);
+
+  
   
 
   const location = useLocation();
@@ -63,6 +72,7 @@ const App = () => {
 
   //console.log(auth);
 
+
   const attemptLogin = () => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -72,10 +82,22 @@ const App = () => {
           authorization: token,
         },
       })
+
+      .then((response) => response.json())
+        .then((user) => {
+          setAuth(user);
+          fetch(`/api/cart/${user_id}`)
+            .then((response) => response.json())
+            .then((cart) => setCart(cart));
+        });
+    }
+  };
+       
         .then((response) => response.json())
         .then((user) => setAuth(user));
         
     }};
+
 
    
   
@@ -123,6 +145,7 @@ const App = () => {
   }, [auth]);
   console.log(auth)
 
+
   const logout = () => {
     window.localStorage.removeItem("token");
     setAuth({});
@@ -148,6 +171,7 @@ const App = () => {
       });
   };
 
+
   const updateUser = async ({ username, password, email, phoneNumber, isAdmin }) => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -164,6 +188,7 @@ const App = () => {
         }
       );
   }};
+
 
   const register = async ({ username, password }) => {
     fetch("/api/auth/register", {
@@ -204,6 +229,8 @@ const App = () => {
 
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
+
+        <Route path="/cart" element={< Cart Cart={Cart} setCart={setCart}/> } />
 
         <Route
           path="/nintendo"
@@ -253,7 +280,11 @@ const App = () => {
           ) 
           
           }
-          <Route path="/register" element={<Register register={register} /> } />
+
+          <Route path="/register" element={< Register register={register}/> } />
+
+          
+
           
       </Routes>
     </div>
