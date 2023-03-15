@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
-tUserByUserName, createUser } = require("../db/User");
-
 const { getUserByUserName, createUser, updateUser } = require("../db/User");
-
 const { authenticate, getUserByToken } = require("../db");
 
 module.exports = router;
@@ -13,7 +10,6 @@ router.post("/", async (req, res, next) => {
     const token = await authenticate(req.body);
     res.send({ token });
   } catch (ex) {
-
     next(ex);
   }
 });
@@ -21,10 +17,9 @@ router.post("/", async (req, res, next) => {
 router.post("/user", async (req, res, next) => {
   try {
     //const token = await authenticate(req.body);
-   const updatedUser = await updateUser(req.body)
+    const updatedUser = await updateUser(req.body);
     res.send(updatedUser);
   } catch (ex) {
-
     next(ex);
   }
 });
@@ -53,7 +48,6 @@ router.post("/register", async (req, res, next) => {
       return;
     }
 
-
     await createUser(req.body);
 
     const token = await authenticate(req.body);
@@ -62,7 +56,6 @@ router.post("/register", async (req, res, next) => {
     next(error);
   }
 });
-
 
 //check if user exists. If so, send an error message
 // otherwise, create a new user with the createUser function (from ../db/User.js)
