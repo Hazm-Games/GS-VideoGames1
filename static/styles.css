@@ -373,7 +373,7 @@ input[type="submit"]:hover {
 
 button {
   background-color: #333;
-  color: black;
+  color: rgb(156, 240, 10);
   border: 2px solid rgb(203, 248, 40);
   padding: 10px 20px;
   text-align: center;

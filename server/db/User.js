@@ -3,12 +3,20 @@ const jwt = require('jsonwebtoken');
 const JWT = process.env.JWT;
 
 
-const createUser = async({ username, password, isAdmin }) => {
+const createUser = async({ username, password, email, phoneNumber, isAdmin }) => {
   const SQL = `
-    INSERT INTO users(username, password, "isAdmin")
-    VALUES($1, $2, $3) RETURNING *
+    INSERT INTO users(username, password, email, "phoneNumber", "isAdmin")
+    VALUES($1, $2, $3, $4, $5) RETURNING *
   `;
-  const response = await client.query(SQL, [ username, password, isAdmin ]);
+  const response = await client.query(SQL, [ username, password, email, phoneNumber, isAdmin ]);
+  return response.rows[0];
+}
+const updateUser = async({ username, password, email, phoneNumber, isAdmin }) => {
+  const SQL = `
+    INSERT INTO users(username, password, email, "phoneNumber", "isAdmin")
+    VALUES($1, $2, $3, $4, $5) RETURNING *
+  `;
+  const response = await client.query(SQL, [ username, password, email, phoneNumber, isAdmin ]);
   return response.rows[0];
 }
 
@@ -64,7 +72,8 @@ module.exports = {
   createUser,
   authenticate,
   getUserByToken,
-  getUserByUserName
+  getUserByUserName,
+  updateUser
 
 };
 
