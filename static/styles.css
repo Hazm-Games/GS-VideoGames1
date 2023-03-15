@@ -156,6 +156,10 @@ h1 {
   margin: 0;
 }
 
+.nostyle {
+list-style-type: none;
+}
+
 
 .top-bar {
 
@@ -456,6 +460,7 @@ input[type="submit"]:hover {
 
 .game-card {
   position: relative;
+ 
   border: 1px solid #ccc;
   border-radius: 5px;
   margin: 36px 5px 36px 5px;
