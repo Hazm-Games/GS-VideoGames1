@@ -22,7 +22,7 @@ const Products = ({ products, setCart }) => {
   };
 
   return (
-  
+    <div className="games-shelf">
     <ul>
      <h2 className="search-title">Search for a game</h2>
       <input
@@ -32,14 +32,17 @@ const Products = ({ products, setCart }) => {
           console.log(ev.target.value);
         }}
       />
+      <ul className="game-grid">
       {products
         .filter((product) => {
           return !term || product.name.includes(term);
         })
+        
         .map((product) => {
           return (
-            <li key={product.id}>
+            <li className="nostyle" key={product.id}>
               <h3>
+
                 <Link to={`/products/${product.id}`}>{product.name}</Link>
                 {''}
           <button
@@ -50,11 +53,14 @@ const Products = ({ products, setCart }) => {
           >
             Add to Cart
           </button>
+
               </h3>
             </li>
           );
         })}
+        </ul>
     </ul>
+    </div>
   );
 };
 

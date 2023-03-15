@@ -9,7 +9,8 @@ const Home = () => {
         <div className="hero-text">
           <h1>Shop at H<font color="#B5F000">A</font>ZM GAMES SITE</h1>
           <p>The only place to find the best games!</p>
- 
+
+
            <button>
             <Link
               className="link"
@@ -19,7 +20,7 @@ const Home = () => {
               Browse games
             </Link>
           </button> 
-        </div>
+          </div>
       </div>
 
       <footer>

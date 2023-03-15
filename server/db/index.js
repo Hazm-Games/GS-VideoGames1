@@ -18,6 +18,8 @@ const syncTables = async () => {
     id SERIAL PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    "phoneNumber" VARCHAR(100),
     "isAdmin" BOOLEAN DEFAULT false
   );
   CREATE TABLE platform(
@@ -86,6 +88,8 @@ const syncAndSeed = async () => {
       createUser({
         username: "admin",
         password: "adminPassword",
+        email: "admin@admin.com",
+        phoneNumber: "904-222-2222",
         isAdmin: true
       }),
 
