@@ -44,8 +44,6 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
   const [ cart, setCart] = useState({});
-  const location = useLocation();
-  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({});
 
   console.log(auth);
@@ -91,12 +89,8 @@ const App = () => {
             .then((cart) => setCart(cart));
         });
     }
-  };
+  }
        
-        .then((response) => response.json())
-        .then((user) => setAuth(user));
-        
-    }};
 
 
    
@@ -230,7 +224,7 @@ const App = () => {
       <Routes>
         <Route path="/products" element={<Products products={products} />} />
 
-        <Route path="/cart" element={< Cart Cart={Cart} setCart={setCart}/> } />
+        <Route path="/cart" element={<Cart Cart={Cart} setCart={setCart}/> } />
 
         <Route
           path="/nintendo"
@@ -281,7 +275,7 @@ const App = () => {
           
           }
 
-          <Route path="/register" element={< Register register={register}/> } />
+          <Route path="/register" element={<Register register={register}/> } />
 
           
 
