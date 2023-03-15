@@ -402,6 +402,9 @@ input[type="submit"]:hover {
 button {
   background-color: #333;
 
+  color: rgb(156, 240, 10);
+
+
 .home{
   display:flex;
   background-color: white;
