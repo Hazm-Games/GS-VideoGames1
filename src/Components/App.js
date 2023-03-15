@@ -11,7 +11,7 @@ import XboxProducts from "./Xbox";
 import PlaystationProducts from "./Playstation";
 import DealProducts from "./Deals";
 import Admin from "./Admin";
-import User from "./User";
+import DisplayUser from "./User";
 
 
 const Search = ({ products }) => {
@@ -59,9 +59,11 @@ const App = () => {
       })
         .then((response) => response.json())
         .then((user) => setAuth(user));
+        
     }};
 
-
+   
+  
 
   useEffect(() => {
     attemptLogin();
@@ -96,6 +98,7 @@ const App = () => {
       navigate('/');
     }
   }, [auth]);
+  console.log(auth)
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -194,7 +197,7 @@ const App = () => {
 
         <Route path="/admin" element={<Admin admin={Admin} />} />
 
-        <Route path="/user" element={<User User={User} />} />
+        <Route path="/user" element={<DisplayUser DisplayUser={DisplayUser} />} />
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
@@ -203,7 +206,7 @@ const App = () => {
           ) 
           
           }
-          <Route path="/register" element={< Register register={register}/> } />
+          <Route path="/register" element={<Register register={register} /> } />
           
       </Routes>
     </div>

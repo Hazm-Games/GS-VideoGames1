@@ -1,5 +1,3 @@
-
-
 form {
   display: flex;
   flex-direction: column;
@@ -21,16 +19,15 @@ header {
   color: #fff;
   padding: 20px;
 
-  box-shadow: rgba(203, 248, 40, 0.4) 0px 5px, 
-  rgba(203, 248, 40, 0.3) 0px 10px,
-   rgba(203, 248, 40, 0.2) 0px 15px, 
-   rgba(245, 188, 0, 0.1) 0px 20px, 
-   rgba(22, 27, 51, 0.05) 0px 25px;
+  box-shadow: rgba(203, 248, 40, 0.4) 0px 5px, rgba(203, 248, 40, 0.3) 0px 10px,
+    rgba(203, 248, 40, 0.2) 0px 15px, rgba(245, 188, 0, 0.1) 0px 20px,
+    rgba(22, 27, 51, 0.05) 0px 25px;
 }
 
 .hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.ibb.co/0XSF0RD/guy-playing.png");
-  margin-top: 30px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://i.ibb.co/0XSF0RD/guy-playing.png");
+  margin-top: 5px;
   height: 494px;
   background-position: center;
   background-repeat: no-repeat;
@@ -39,9 +36,9 @@ header {
 }
 
 .hero-text {
-padding-top: 120px;
-text-align: center;
- color: white;
+  padding-top: 120px;
+  text-align: center;
+  color: white;
 }
 
 .hero-text button {
@@ -50,7 +47,7 @@ text-align: center;
   display: inline-block;
   padding: 10px 25px;
   color: black;
-  background-color: #ddd;
+  background-color: #262525;
   text-align: center;
   cursor: pointer;
 }
@@ -59,7 +56,6 @@ text-align: center;
   background-color: #555;
   color: white;
 }
-
 
 nav ul {
   margin: 0;
@@ -85,7 +81,7 @@ nav ul li {
   padding: 0 30px;
   text-decoration: none;
   color: rgb(244, 236, 236);
-  position: relative; 
+  position: relative;
   display: block;
   height: 60px;
   text-align: center;
@@ -94,10 +90,10 @@ nav ul li {
   border-radius: 50%;
   font-size: 20px;
   color: rgb(212, 203, 203);
-  transition: .5s;
+  transition: 0.5s;
 }
 .fab::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -105,15 +101,14 @@ nav ul li {
   height: 100%;
   border-radius: 50%;
   background: rgb(203, 248, 40);
-  transition: .5s;
-  transform: scale(.9);
+  transition: 0.5s;
+  transform: scale(0.9);
   z-index: -1;
 }
- .fab:hover::before {
+.fab:hover::before {
   transform: scale(1.1);
   box-shadow: 0 0 15px #ffee10;
 }
-
 
 .fab:hover {
   color: whitesmoke;
@@ -124,36 +119,32 @@ h1 {
   margin: 0;
 }
 
-
 .top-bar {
-
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-z-index: 100;
-background-color: rgb(203, 248, 40);
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgb(203, 248, 40);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .div1 {
-float: left;
+  float: left;
 }
 
 .top-bar::after {
-content: '';
-display: table;
-clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
-
- .dashed {
-  color:rgba(154, 205, 50, 0.4);
- }
+.dashed {
+  color: rgba(154, 205, 50, 0.4);
+}
 
 .logo {
   width: 300px;
-  
 }
 
 .loginBtn {
@@ -169,13 +160,10 @@ clear: both;
   margin: 4px 2px;
   cursor: pointer;
   width: 175px;
-
-
 }
 nav li {
   display: inline-block;
   margin-right: 20px;
-  
 }
 
 nav a {
@@ -218,29 +206,26 @@ main {
 
 .account-info {
   margin-top: 36px;
- 
-  display:flex;
+
+  display: flex;
   flex-direction: row;
   float: right;
-  }
+}
 
-  .gap {
-    margin-right: 30px;
-  }
+.gap {
+  margin-right: 30px;
+}
 
 input {
   width: 480px;
 }
 
-.shelf-heading{
+.shelf-heading {
   margin-top: 100px;
- 
 }
 
-
-
-.mwhite  { 
-color: rgb(8, 7, 7);
+.mwhite {
+  color: rgb(8, 7, 7);
 }
 
 footer {
@@ -264,7 +249,7 @@ nav {
   align-items: center;
   width: 84%;
   margin-top: 120px;
- 
+  text-decoration: none;
 }
 
 nav img {
@@ -289,7 +274,7 @@ nav img {
 
 .nav-links {
   display: flex;
-  
+
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -302,21 +287,24 @@ nav img {
   margin: 0 10px;
 }
 .page-grid {
-display: grid;
-grid-template-columns: 385px auto;
-padding-top: 45px;
-margin-left: 250px;
-margin-right: 250px;
+  display: grid;
+  grid-template-columns: 385px auto;
+  padding-top: 45px;
+  margin-left: 250px;
+  margin-right: 250px;
 }
 
-.item1 { grid-area: image; }
-.item2 { grid-area: title ; }
+.item1 {
+  grid-area: image;
+}
+.item2 {
+  grid-area: title;
+}
 
 .grid-container {
   display: grid;
-  grid-template-areas: "image title title"
+  grid-template-areas: "image title title";
 }
-
 
 .container1 {
   display: flex;
@@ -331,7 +319,6 @@ margin-right: 250px;
   border: 1px solid black;
   display: flex;
   justify-content: space-between;
-
 }
 
 .cart-img {
@@ -341,8 +328,8 @@ margin-right: 250px;
 
 .title {
   margin-top: 50px;
- margin-bottom: 30px;
- text-align: center;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 form {
@@ -350,7 +337,9 @@ form {
   margin: auto;
 }
 
-label, input, textarea {
+label,
+input,
+textarea {
   display: block;
   margin-bottom: 10px;
 }
@@ -359,7 +348,8 @@ label {
   font-weight: bold;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -367,7 +357,7 @@ input, textarea {
 }
 
 input[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -382,7 +372,7 @@ input[type="submit"]:hover {
 }
 
 button {
-  background-color: white;
+  background-color: #333;
   color: black;
   border: 2px solid rgb(203, 248, 40);
   padding: 10px 20px;
@@ -397,15 +387,15 @@ button {
 }
 
 button:hover {
-  background-color:  #333;
+  background-color: #333;
   color: white;
 }
 
-.search-title{
-  margin-top: 50px
+.search-title {
+  margin-top: 50px;
 }
 
-.games-shelf{
+.games-shelf {
   align-items: center;
 }
 
@@ -413,10 +403,9 @@ button:hover {
   margin-top: 34px;
   display: grid;
   flex-wrap: wrap;
- 
- grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
 
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
 }
 
 .game-card {
@@ -427,7 +416,8 @@ button:hover {
   padding: 20px;
   text-align: center;
   width: 200px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 .game-card:hover {
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
@@ -453,9 +443,8 @@ button:hover {
 }
 
 .cardBtn:hover {
-  background-color:  #333;
+  background-color: #333;
   color: white;
-
 }
 
 .single-game-container {
@@ -503,7 +492,6 @@ button:hover {
   background-color: #333;
 }
 
-
 footer {
   background-color: #333;
   color: #fff;
@@ -540,7 +528,6 @@ footer {
 .footer-links ul li a:hover {
   color: #007bff;
 }
-
 
 .footer-links ul li a:hover {
   color: #007bff;
@@ -613,7 +600,10 @@ h2 {
   padding: 20px;
 }
 
-input[type="text"], input[type="email"], input[type="tel"], textarea {
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
   display: block;
   margin-bottom: 20px;
   width: 100%;
@@ -639,21 +629,13 @@ input[type="submit"] {
   position: absolute;
   top: 0;
   right: 0;
-
 }
 
-
-
-
-
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .game-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-
-
 
 @media (max-width: 600px) {
   .logo {
@@ -664,9 +646,9 @@ input[type="submit"] {
     grid-template-columns: repeat(2, 1fr);
   }
   nav {
-   margin-top: 320px;
-    
- }
+    margin-top: 320px;
+    text-decoration: none;
+  }
 
   .nav-links {
     display: none;
@@ -688,5 +670,7 @@ input[type="submit"] {
   .hamburger {
     display: block;
   }
+
+  
 }
 
