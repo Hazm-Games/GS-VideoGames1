@@ -753,10 +753,7 @@ input[type="submit"] {
   .game-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  nav {
-    margin-top: 320px;
-    text-decoration: none;
-  }
+
 
   .nav-links {
     display: none;
