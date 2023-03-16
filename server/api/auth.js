@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getUserByUserName, createUser } = require("../db/User");
+const { getUserByUserName, createUser, updateUser } = require("../db/User");
 const { authenticate, getUserByToken } = require("../db");
 
 module.exports = router;
@@ -9,6 +9,16 @@ router.post("/", async (req, res, next) => {
   try {
     const token = await authenticate(req.body);
     res.send({ token });
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+router.patch("/user", async (req, res, next) => {
+  try {
+    //const token = await authenticate(req.body);
+    const updatedUser = await updateUser(req.body);
+    res.send(updatedUser);
   } catch (ex) {
     next(ex);
   }

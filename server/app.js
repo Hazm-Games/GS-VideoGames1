@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const { getCartByUserId, createCart, deleteCartProduct, updateCartProductQuantity, purchaseCart, addProductToCart } = require("./db/cart");
 const { getProducts, getSingleProduct, getNintendoProducts, getPlaystationProducts, getXboxProducts, getDealProducts } = require("./db/products");
+const {getUserByToken} = require("./db/User") 
 app.use(express.json());
 
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
@@ -20,6 +22,47 @@ app.get("/api/products", async (req, res) => {
   const products = await getProducts();
   res.send(products);
 });
+
+
+app.get('/api/cart/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const cart = await getCartByUserId({ userId });
+  res.send(cart);
+});
+
+app.post('/api/cart', async (req, res) => {
+  const user = await getUserByToken(req.headers.authorization);
+  const cart = await getCartByUserId({ userId: user.id });
+  const newCart = await purchaseCart({ cartId: cart.id, userId: user.id });
+  res.send(newCart);
+});
+
+app.post('/api/cart/:productId', async (req, res) => {
+  const { productId } = req.params;
+  const user = await getUserByToken(req.headers.authorization);
+  if (!user) {
+    res.status(401).send({ error: 'Unauthorized' });
+    return;
+  }
+  const cart = await getCartByUserId({ userId: user.id });
+  await addProductToCart({ cartId: cart.id,  productId });
+  const updatedCart = await getCartByUserId({ userId: user.id });
+  res.send(updatedCart);
+});
+
+app.delete('/api/cart/:productId', async (req, res) => {
+  const { productId } = req.params;
+  const user = await getUserByToken(req.headers.authorization);
+  if (!user) {
+    res.status(401).send({ error: 'Unauthorized' });
+    return;
+  }
+  const cart = await getCartByUserId({ user_id: user.id });
+  await deleteCartProduct({ cartId: cart.id, productId });
+  const updatedCart = await getCartByUserId({ user_id: user.id });
+  res.send(updatedCart);
+});
+
 
 app.get("/api/products/:id", async (req, res) => {
   const id = req.params.id;
