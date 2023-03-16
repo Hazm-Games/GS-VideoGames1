@@ -19,30 +19,9 @@ import DealProducts from "./Deals";
 import Admin from "./Admin";
 import Cart from "./Cart";
 import DisplayUser from "./User";
-import Modal from "./Modal";
 
-//  const Search = ({ products }) => {
-//   const { term } = useParams();
-//   const navigate = useNavigate();
-//   return (
-//     <ul>
-//       <input
-//         placeholder="search for games"
-//         onChange={(ev) => {
-//           navigate(`/products/search/${ev.target.value}`);
-//           console.log(ev.target.value);
-//         }}
-//       />
-//       {products
-//         .filter((product) => {
-//           return !term || product.name.includes(term);
-//         })
-//         .map((product) => {
-//           return <li key={product.id}>{product.name}</li>;
-//         })}
-//     </ul>
-//   );
-// };
+
+
 
 const App = () => {
   const [auth, setAuth] = useState({});
@@ -55,18 +34,6 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      backgroundColor: "white",
-      width: 400,
-    },
-  };
 
   //console.log(auth);
 
@@ -224,7 +191,7 @@ const App = () => {
       <Routes>
         <Route
           path="/products"
-          element={<Products products={products} setCart={setCart} />}
+          element={<Products products={products} setCart={setCart}  />}
         />
 
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
@@ -253,7 +220,7 @@ const App = () => {
 
         <Route
           path="/products/:id"
-          element={<SingleProduct singleProduct={SingleProduct} />}
+          element={<SingleProduct singleProduct={SingleProduct} setCart={setCart} />}
         />
 
         <Route

@@ -2,7 +2,27 @@ import React from "react";
 import { useParams, link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const SingleProduct = ({}) => {
+
+
+const addProductToCart = async (productId) => {
+  console.log(productId)
+  const token = window.localStorage.getItem('token');
+  if (!token) return;
+  const response = await fetch(`/api/cart/${productId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  });
+  const updatedCart = await response.json();
+  console.log(updatedCart)
+  return updatedCart;
+};
+
+
+
+const SingleProduct = ({setCart, updatedCart}) => {
   const [singleProduct, setSingleProduct] = useState({});
   const params = useParams();
   const id = params.id;
@@ -30,8 +50,14 @@ const SingleProduct = ({}) => {
       <p>Price: ${singleProduct.price}</p>
       <p>Condition: {singleProduct.condition}</p>
       <p>{singleProduct.onSale}</p>
-      <button className="addtocartBtn">Add to Cart</button>
-
+      <button className="addtocartBtn"
+      onClick={async () => {
+        const updatedCart = await addProductToCart(singleProduct.id);
+        setCart(updatedCart);
+      }}
+    >
+      Add to Cart
+    </button>
       </div>
     </div>
   );
