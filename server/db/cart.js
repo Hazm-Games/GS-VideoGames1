@@ -17,14 +17,13 @@ const createCart = async ({userId}) => {
 
 // get cart by user id
 const getCartByUserId = async ({ userId }) => {
+
   const SQL = `
     SELECT * FROM cart
-    WHERE user_id = $1 AND is_purchased= true;
+    WHERE user_id = $1 AND is_purchased=false;
   `;
   const response = await client.query(SQL, [userId]);
-  console.log(response)
   const cart = response.rows[0];
-  console.log(cart)
   // get products, and attach to cart
   const productsSQL = `
   SELECT * FROM cart_products
@@ -38,12 +37,12 @@ const getCartByUserId = async ({ userId }) => {
 
 
 // function to add a product to a cart
-const addProductToCart = async (cartId, productId) => {
+const addProductToCart = async ({cartId, productId}) => {
+  console.log(productId, 'yoyo')
   try {
     const checkSQL = `
-      INSERT INTO cart_Products (cart_id, product_id)
-      VALUES ($1, $2)
-      RETURNING *;
+      SELECT * FROM cart_products
+      WHERE cart_id = $1 AND product_id = $2
     `;
     
     const checkResponse = await client.query(checkSQL, [cartId, productId]);
@@ -60,6 +59,7 @@ const addProductToCart = async (cartId, productId) => {
     RETURNING *
     `;
   await client.query(SQL, [productId, cartId]);
+  console.log()
   return;
   
 } catch (error) {

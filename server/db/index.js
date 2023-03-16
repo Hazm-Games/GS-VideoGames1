@@ -44,9 +44,9 @@ const syncTables = async () => {
    );
    CREATE TABLE cart_Products(
     id  SERIAL  PRIMARY KEY,
-    cart_id INTEGER NOT NULL REFERENCES Cart(id),
-    product_id INTEGER NOT NULL REFERENCES Products(id),
-    quantity INTEGER NOT NULL
+    cart_id INTEGER NOT NULL REFERENCES cart(id),
+    product_id INTEGER NOT NULL REFERENCES products(id),
+    quantity INTEGER DEFAULT 1
   );
   
   `;

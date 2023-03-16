@@ -4,7 +4,13 @@ import Login from "./Login";
 import Register from "./Register";
 import Nav from "./Nav";
 import Products from "./Products";
-import { Routes, Route, useNavigate, useParams, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useParams,
+  useLocation,
+} from "react-router-dom";
 import SingleProduct from "./SingleProduct";
 import NintendoProducts from "./Nintendo";
 import XboxProducts from "./Xbox";
@@ -14,8 +20,6 @@ import Admin from "./Admin";
 import Cart from "./Cart";
 import DisplayUser from "./User";
 import Modal from "./Modal";
-
-
 
 //  const Search = ({ products }) => {
 //   const { term } = useParams();
@@ -38,18 +42,15 @@ import Modal from "./Modal";
 //         })}
 //     </ul>
 //   );
-// }; 
+// };
 
 const App = () => {
   const [auth, setAuth] = useState({});
   const [products, setProducts] = useState([]);
-  const [ cart, setCart] = useState({});
+  const [cart, setCart] = useState({});
   const [userDetails, setUserDetails] = useState({});
 
   console.log(auth);
-
-  
-  
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -67,9 +68,7 @@ const App = () => {
     },
   };
 
-
   //console.log(auth);
-
 
   const attemptLogin = () => {
     const token = window.localStorage.getItem("token");
@@ -80,8 +79,7 @@ const App = () => {
           authorization: token,
         },
       })
-
-      .then((response) => response.json())
+        .then((response) => response.json())
         .then((user) => {
           setAuth(user);
           fetch(`/api/cart/${user.id}`)
@@ -89,18 +87,17 @@ const App = () => {
             .then((cart) => setCart(cart));
         });
     }
-  }
-       
-
-
-   
-  
+  };
 
   useEffect(() => {
     attemptLogin();
   }, []);
 
- /*  useEffect(() => {
+  useEffect(() => {
+    updateUser();
+  }, []);
+
+  /*  useEffect(() => {
     if (token) {
       fetch("/api/user/", {
         method: "GET",
@@ -123,27 +120,26 @@ const App = () => {
       });
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     const path = location.pathname;
-    if(path === '/login' && auth.id){
-      navigate('/');
+    if (path === "/login" && auth.id) {
+      navigate("/");
     }
   }, [auth]);
-  console.log(auth)
+  console.log(auth);
 
-  useEffect(()=> {
+  useEffect(() => {
     const path = location.pathname;
-    if(path === '/register' && auth.id){
-      navigate('/');
+    if (path === "/register" && auth.id) {
+      navigate("/");
     }
   }, [auth]);
-  console.log(auth)
-
+  console.log(auth);
 
   const logout = () => {
     window.localStorage.removeItem("token");
     setAuth({});
-    navigate('/login');
+    navigate("/login");
   };
 
   const login = async ({ username, password }) => {
@@ -165,24 +161,34 @@ const App = () => {
       });
   };
 
-
-  const updateUser = async ({ username, password, email, phoneNumber, isAdmin }) => {
+  const updateUser = async ({
+    username,
+    password,
+    email,
+    phoneNumber,
+    isAdmin,
+  }) => {
     const token = window.localStorage.getItem("token");
     if (token) {
-    fetch("/api/auth/user", {
-      method: "POST",
-      body: JSON.stringify({ username, password, email, phoneNumber, isAdmin }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        setUserDetails(user)
-        }
-      );
-  }};
-
+      fetch("/api/auth/user", {
+        method: "PATCH",
+        body: JSON.stringify({
+          username,
+          password,
+          email,
+          phoneNumber,
+          isAdmin,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((user) => {
+          setUserDetails(user), setAuth(user);
+        });
+    }
+  };
 
   const register = async ({ username, password }) => {
     fetch("/api/auth/register", {
@@ -203,28 +209,17 @@ const App = () => {
       });
   };
 
-  
-
   return (
-
-    
     <div>
-
-    <div className="APP">
-    <button>Show Modal</button>
-    <Modal />
-    </div>
-    
-
-
-      
-<Nav auth={auth} logout={logout} />
-
+      <Nav auth={auth} logout={logout} />
 
       <Routes>
-        <Route path="/products" element={<Products products={products} />} />
+        <Route
+          path="/products"
+          element={<Products products={products} setCart={setCart} />}
+        />
 
-        <Route path="/cart" element={<Cart Cart={Cart} setCart={setCart}/> } />
+        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
 
         <Route
           path="/nintendo"
@@ -255,31 +250,28 @@ const App = () => {
 
         <Route
           path="/products/search"
-          element={<Products products={products} />}
+          element={<Products products={products} setCart={setCart} />}
         />
 
         <Route
           path="/products/search/:term"
-          element={<Products products={products} />}
+          element={<Products products={products} setCart={setCart} />}
         />
 
         <Route path="/admin" element={<Admin admin={Admin} />} />
 
-        <Route path="/user" element={<DisplayUser DisplayUser={DisplayUser} />} />
+        <Route
+          path="/user"
+          element={<DisplayUser DisplayUser={DisplayUser} />}
+        />
 
         {auth.id ? (
           <Route path="/" element={<Home auth={auth} />} />
         ) : (
           <Route path="/login" element={<Login login={login} />} />
-          ) 
-          
-          }
+        )}
 
-          <Route path="/register" element={<Register register={register}/> } />
-
-          
-
-          
+        <Route path="/register" element={<Register register={register} />} />
       </Routes>
     </div>
   );

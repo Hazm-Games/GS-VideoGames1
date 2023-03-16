@@ -7,7 +7,9 @@ import { Link, Routes, Route, useNavigate, useParams } from "react-router-dom";
 const Products = ({ products, setCart }) => {
   const navigate = useNavigate();
   const { term } = useParams();
+
   const addProductToCart = async (productId) => {
+    console.log(productId)
     const token = window.localStorage.getItem('token');
     if (!token) return;
     const response = await fetch(`/api/cart/${productId}`, {
@@ -18,6 +20,7 @@ const Products = ({ products, setCart }) => {
       },
     });
     const updatedCart = await response.json();
+    console.log(updatedCart)
     return updatedCart;
   };
 
