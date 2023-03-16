@@ -126,7 +126,15 @@ const App = () => {
       navigate("/");
     }
   }, [auth]);
-  console.log(auth);
+  
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === "/user" && auth.id) {
+      navigate("/");
+    }
+  }, [auth]);
+  //console.log(auth);
 
   useEffect(() => {
     const path = location.pathname;
@@ -134,7 +142,7 @@ const App = () => {
       navigate("/");
     }
   }, [auth]);
-  console.log(auth);
+ // console.log(auth);
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -163,10 +171,10 @@ const App = () => {
 
   const updateUser = async ({
     username,
-    password,
     email,
     phoneNumber,
     isAdmin,
+    id
   }) => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -174,10 +182,10 @@ const App = () => {
         method: "PATCH",
         body: JSON.stringify({
           username,
-          password,
           email,
           phoneNumber,
           isAdmin,
+          id
         }),
         headers: {
           "Content-Type": "application/json",
@@ -262,7 +270,7 @@ const App = () => {
 
         <Route
           path="/user"
-          element={<DisplayUser DisplayUser={DisplayUser} />}
+          element={<DisplayUser DisplayUser={DisplayUser} updateUser={updateUser} />}
         />
 
         {auth.id ? (
