@@ -753,7 +753,7 @@ input[type="submit"] {
   .game-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
+ 
 
   .nav-links {
     display: none;

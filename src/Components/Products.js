@@ -45,9 +45,8 @@ const Products = ({ products, setCart }) => {
           return (
             <li className="nostyle" key={product.id}>
               <h3>
-                
+
                 <Link to={`/products/${product.id}`}>
-                {''}
                 <div className="game-card">
                 <img src={product.image_url} />
                 {product.name}
@@ -59,8 +58,8 @@ const Products = ({ products, setCart }) => {
           >
             Add to Cart
           </button>
-            </div>
-            </Link>
+             </div>
+             </Link>
               </h3>
             </li>
           );
