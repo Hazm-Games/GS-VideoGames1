@@ -48,14 +48,7 @@ const Products = ({ products, setCart }) => {
 
                 <Link to={`/products/${product.id}`}>{product.name}</Link>
                 {''}
-          <button
-            onClick={async () => {
-              const updatedCart = await addProductToCart(product.id);
-              setCart(updatedCart);
-            }}
-          >
-            Add to Cart
-          </button>
+         
 
               </h3>
             </li>

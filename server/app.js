@@ -57,9 +57,9 @@ app.delete('/api/cart/:productId', async (req, res) => {
     res.status(401).send({ error: 'Unauthorized' });
     return;
   }
-  const cart = await getCartByUserId({ user_id: user.id });
+  const cart = await getCartByUserId({ userId: user.id });
   await deleteCartProduct({ cartId: cart.id, productId });
-  const updatedCart = await getCartByUserId({ user_id: user.id });
+  const updatedCart = await getCartByUserId({ userId: user.id });
   res.send(updatedCart);
 });
 
