@@ -33,6 +33,10 @@ const Cart = ({ cart, setCart }) => {
     setCart(newCart);
   };
 
+  function ThankYou() {
+    alert ("Confirm Purchase?");
+   // document.write ("Thank you for your Purchase!");
+  }
  // console.log('Cart: ', cart);
   return (
     <div>
@@ -42,7 +46,7 @@ const Cart = ({ cart, setCart }) => {
           return (
             <li>
               {product.name}({product.quantity})
-              <button
+              <button 
                 onClick={async () => {
                   const updatedCart = await deleteProductFromCart(product.id);
                 }}
@@ -53,9 +57,9 @@ const Cart = ({ cart, setCart }) => {
           );
         })}
       </ul>
-      <button
+      <button 
         onClick={async () => {
-          const newCart = await purchaseCart();
+          const newCart = await purchaseCart(); ThankYou();
         }}
       >
         PURCHASE CART
