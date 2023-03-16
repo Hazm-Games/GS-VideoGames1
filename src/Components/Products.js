@@ -46,8 +46,10 @@ const Products = ({ products, setCart }) => {
             <li className="nostyle" key={product.id}>
               <h3>
 
-                <Link to={`/products/${product.id}`}>{product.name}</Link>
-                {''}
+                <Link to={`/products/${product.id}`}>
+                <div className="game-card">
+                <img src={product.image_url} />
+                {product.name}
           <button
             onClick={async () => {
               const updatedCart = await addProductToCart(product.id);
@@ -56,7 +58,8 @@ const Products = ({ products, setCart }) => {
           >
             Add to Cart
           </button>
-
+             </div>
+             </Link>
               </h3>
             </li>
           );
