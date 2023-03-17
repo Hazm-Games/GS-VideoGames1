@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
+
+
 const Cart = ({ cart, setCart }) => {
   const deleteProductFromCart = async (productId) => {
     const token = window.localStorage.getItem('token');
@@ -33,6 +35,19 @@ const Cart = ({ cart, setCart }) => {
     setCart(newCart);
   };
 
+
+  
+
+  function ThankYou() {
+    
+    if (confirm("Confirm Purchase?") == true) {
+        alert("Thank you for your purchase!");  window.location.href = "#/";
+    } else {
+        return
+    }
+     
+ // document.location.href='your url';
+  }
  // console.log('Cart: ', cart);
   return (
     <div className="cart-page-container">
@@ -40,11 +55,13 @@ const Cart = ({ cart, setCart }) => {
       <ul>
         {cart.products?.map((product) => {
           return (
+
             <li className="items-in-cart">
               {product.name}${product.price}({product.quantity})
               <img className="cart-img" src={product.image_url} />
               <button
                 className="deleteBtn"
+
                 onClick={async () => {
                   const updatedCart = await deleteProductFromCart(product.id);
                 }}
@@ -55,9 +72,11 @@ const Cart = ({ cart, setCart }) => {
           );
         })}
       </ul>
+
       <button className="cartBtn"
+
         onClick={async () => {
-          const newCart = await purchaseCart();
+          const newCart = await purchaseCart(); ThankYou();
         }}
       >
         PURCHASE CART

@@ -36,6 +36,11 @@ const SingleProduct = ({setCart, updatedCart}) => {
       });
   }, []);
 
+  function areYouSure() {
+    alert ("Game added to Cart");
+   // document.write ("Thank you for your Purchase!");
+  }
+
   return (
     <div className="single-game-container">
 
@@ -52,7 +57,7 @@ const SingleProduct = ({setCart, updatedCart}) => {
       <p>{singleProduct.onSale}</p>
       <button className="addtocartBtn"
       onClick={async () => {
-        const updatedCart = await addProductToCart(singleProduct.id);
+        const updatedCart = await addProductToCart(singleProduct.id); areYouSure();
         setCart(updatedCart);
       }}
     >
