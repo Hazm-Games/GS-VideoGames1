@@ -15,8 +15,13 @@ const Home = () => {
             <Link
               className="link"
               style={{ color: "#B5F000", textDecoration: "none", fontWeight: "1000" }}
+<<<<<<< HEAD
+              to={`/products`} 
+             >
+=======
               to={`/products`}>
             
+>>>>>>> 09d7348aeb67d9e31d8ea51afdf5fe1beeb3e12d
               Browse games
             </Link>
           </button> 
