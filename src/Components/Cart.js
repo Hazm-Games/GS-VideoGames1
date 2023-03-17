@@ -90,10 +90,10 @@ const Cart = ({ cart, setCart }) => {
       </button>
     </div>
   );
-};
+}};
 
 
 
 
 
- export default Cart;
+ export default Cart
