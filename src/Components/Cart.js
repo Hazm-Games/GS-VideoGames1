@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
+
+
 const Cart = ({ cart, setCart }) => {
   const deleteProductFromCart = async (productId) => {
     const token = window.localStorage.getItem('token');
@@ -33,29 +35,55 @@ const Cart = ({ cart, setCart }) => {
     setCart(newCart);
   };
 
-  console.log('Cart: ', cart);
+
+  function ThankYou() {
+    alert ("Confirm Purchase?");
+   // document.write ("Thank you for your Purchase!");
+
+
+  
+
+  function ThankYou() {
+    
+    if (confirm("Confirm Purchase?") == true) {
+        alert("Thank you for your purchase!");  window.location.href = "#/";
+    } else {
+        return
+    }
+     
+ // document.location.href='your url';
+
+  }
+ // console.log('Cart: ', cart);
   return (
-    <div>
-      <h2>My products:</h2>
+    <div className="cart-page-container">
+      <h2>My cart items</h2>
       <ul>
         {cart.products?.map((product) => {
           return (
-            <li>
-              {product.name}({product.quantity})
+
+
+            <li className="items-in-cart">
+              {product.name}${product.price}({product.quantity})
+              <img className="cart-img" src={product.image_url} />
               <button
+                className="deleteBtn"
+
                 onClick={async () => {
                   const updatedCart = await deleteProductFromCart(product.id);
                 }}
               >
-                DELETE PRODUCT
+                Delete
               </button>
             </li>
           );
         })}
       </ul>
-      <button
+
+      <button className="cartBtn"
+
         onClick={async () => {
-          const newCart = await purchaseCart();
+          const newCart = await purchaseCart(); ThankYou();
         }}
       >
         PURCHASE CART
@@ -63,56 +91,9 @@ const Cart = ({ cart, setCart }) => {
     </div>
   );
 };
-// function Cart({ userId }) {
-//   const [cart, setCart] = useState(null);
 
-//   useEffect(() => {
-//     fetch(`/api/cart`)
-//       .then((response) => response.json())
-//       .then((cart) => {
-//        setCart(cart);
-       
-//       });
-//   }, []);
 
-//   useEffect(() => {
-//     async function fetchCart() {
-//       const cart = await getCartByUserId({ userId });
-//       setCart(cart);
-//     }
-//     fetchCart();
-//   }, [userId]);
 
-//   if (!cart) {
-//     return <div>Loading...</div>;
-//   }
 
-//   return (
-//     <div>
-//       <h1>Your Cart</h1>
-//       <ul>
-//         {cart.products.map((product) => (
-//           <li key={product.id}>
-//             {product.name} - Quantity: {product.quantity}
-//             <button onClick={() => handleDelete(product.id)}>Delete</button>
-//           </li>
-//         ))}
-//       </ul>
-//       <button onClick={() => handlePurchase(cart.id)}>Purchase</button>
-//     </div>
-//   );
-
-//   async function handleDelete(productId) {
-//     await deleteCartProduct(productId);
-//     const updatedCart = await getCartByUserId({ userId });
-//     setCart(updatedCart);
-//   }
-
-//   async function handlePurchase(cartId) {
-//     await purchaseCart({ cartId, userId });
-//     const newCart = await createCart(userId);
-//     setCart(newCart);
-//   }
-// }
 
  export default Cart;

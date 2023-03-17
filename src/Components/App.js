@@ -19,30 +19,9 @@ import DealProducts from "./Deals";
 import Admin from "./Admin";
 import Cart from "./Cart";
 import DisplayUser from "./User";
-import Modal from "./Modal";
 
-//  const Search = ({ products }) => {
-//   const { term } = useParams();
-//   const navigate = useNavigate();
-//   return (
-//     <ul>
-//       <input
-//         placeholder="search for games"
-//         onChange={(ev) => {
-//           navigate(`/products/search/${ev.target.value}`);
-//           console.log(ev.target.value);
-//         }}
-//       />
-//       {products
-//         .filter((product) => {
-//           return !term || product.name.includes(term);
-//         })
-//         .map((product) => {
-//           return <li key={product.id}>{product.name}</li>;
-//         })}
-//     </ul>
-//   );
-// };
+
+
 
 const App = () => {
   const [auth, setAuth] = useState({});
@@ -55,18 +34,6 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      backgroundColor: "white",
-      width: 400,
-    },
-  };
 
   //console.log(auth);
 
@@ -133,7 +100,15 @@ const App = () => {
       navigate("/");
     }
   }, [auth]);
-  console.log(auth);
+  
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === "/user" && auth.id) {
+      navigate("/");
+    }
+  }, [auth]);
+  //console.log(auth);
 
   useEffect(() => {
     const path = location.pathname;
@@ -141,7 +116,7 @@ const App = () => {
       navigate("/");
     }
   }, [auth]);
-  console.log(auth);
+ // console.log(auth);
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -170,10 +145,10 @@ const App = () => {
 
   const updateUser = async ({
     username,
-    password,
     email,
     phoneNumber,
     isAdmin,
+    id
   }) => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -181,10 +156,10 @@ const App = () => {
         method: "PATCH",
         body: JSON.stringify({
           username,
-          password,
           email,
           phoneNumber,
           isAdmin,
+          id
         }),
         headers: {
           "Content-Type": "application/json",
@@ -223,7 +198,7 @@ const App = () => {
       <Routes>
         <Route
           path="/products"
-          element={<Products products={products} setCart={setCart} />}
+          element={<Products products={products} setCart={setCart}  />}
         />
 
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
@@ -252,7 +227,7 @@ const App = () => {
 
         <Route
           path="/products/:id"
-          element={<SingleProduct singleProduct={SingleProduct} />}
+          element={<SingleProduct singleProduct={SingleProduct} setCart={setCart} />}
         />
 
         <Route
@@ -269,7 +244,7 @@ const App = () => {
 
         <Route
           path="/user"
-          element={<DisplayUser DisplayUser={DisplayUser} />}
+          element={<DisplayUser DisplayUser={DisplayUser} updateUser={updateUser} />}
         />
 
         {auth.id ? (
