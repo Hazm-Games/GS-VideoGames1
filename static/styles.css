@@ -551,6 +551,41 @@ button:hover {
   color: white;
 }
 
+.cart-page-container {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 50px 0;
+ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.items-in-cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: 30px;
+  border: 1px solid rgb(203, 248, 40);
+}
+
+.cart-img{
+  margin-left: 11px;
+  width: 55px;
+  height: auto;
+
+}
+
+.deleteBtn {
+  margin-left: 20px;
+ 
+
+}
+
+.cartBtn {
+  margin-left: 20px;
+  padding: 10px 18px;
+}
+
 .single-game-container {
   display: flex;
   align-items: center;
@@ -631,12 +666,7 @@ footer {
 }
 
 .footer-links ul li a:hover {
-  color: rgb(203, 248, 40);;
-}
-
-
-.footer-links ul li a:hover {
-  color: #007bff;
+  color: rgb(203, 248, 40);
 }
 
 
@@ -832,8 +862,13 @@ input[type="submit"] {
     border-bottom: 1px solid white;
   }
 
+
+
  @media (max-width: 768px) {
   .game-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+
 } 
+

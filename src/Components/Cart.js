@@ -35,14 +35,16 @@ const Cart = ({ cart, setCart }) => {
 
  // console.log('Cart: ', cart);
   return (
-    <div>
-      <h2>My products:</h2>
+    <div className="cart-page-container">
+      <h2>My cart items</h2>
       <ul>
         {cart.products?.map((product) => {
           return (
-            <li>
-              {product.name}({product.quantity})
+            <li className="items-in-cart">
+              {product.name}${product.price}({product.quantity})
+              <img className="cart-img" src={product.image_url} />
               <button
+                className="deleteBtn"
                 onClick={async () => {
                   const updatedCart = await deleteProductFromCart(product.id);
                 }}
@@ -53,7 +55,7 @@ const Cart = ({ cart, setCart }) => {
           );
         })}
       </ul>
-      <button
+      <button className="cartBtn"
         onClick={async () => {
           const newCart = await purchaseCart();
         }}
