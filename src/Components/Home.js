@@ -14,8 +14,8 @@ const Home = () => {
             <Link
               className="link"
               style={{ color: "#B5F000", textDecoration: "none", fontWeight: "1000" }}
-              to={`/products`}
-            
+              to={`/products`} 
+             >
               Browse games
             </Link>
           </button>
