@@ -13,7 +13,7 @@ const DisplayUser = ({ updateUser }) => {
 
   const _displayUser = (ev)=> {
     ev.preventDefault();
-    updateUser({ username, email, phoneNumber});
+    updateUser({ id:userDetails.id, username, email, phoneNumber});
   };
   
 
@@ -26,8 +26,8 @@ const DisplayUser = ({ updateUser }) => {
     })
       .then((response) => response.json())
       .then((user) => {
-        setUserDetails(user);
-        console.log(user);
+        setUserDetails({...user, id:user.id});
+        //console.log(user);
       });
   }, []);
 
@@ -35,7 +35,7 @@ const DisplayUser = ({ updateUser }) => {
     <ul>
 
     <h1 style={{fontSize:'30px'}}>Account Details </h1>
-    <p style={{textAlign:'center'}}>Username</p>
+    <p style={{textAlign:'center'}}>Re-Enter or Update Username</p>
     <form onSubmit={ _displayUser }>
     <input
       placeholder={userDetails.username}
