@@ -570,6 +570,7 @@ button:hover {
 
 .game-details-container {
   width: 50%;
+ 
 }
 
 .game-details-container h1 {
@@ -751,7 +752,7 @@ input[type="submit"] {
   } */
 
   .game-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
  
 
@@ -831,3 +832,8 @@ input[type="submit"] {
     border-bottom: 1px solid white;
   }
 
+ @media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} 
