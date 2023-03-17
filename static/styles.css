@@ -16,6 +16,7 @@ body {
 
 header {
   width: 100%;
+  bottom: 600px;
   background-color: #333;
   color: #fff;
   padding: 20px;
@@ -151,10 +152,20 @@ h1 {
   margin: 0;
 }
 
+
+
+.nostyle {
+list-style-type: none;
+}
+
+
+
+
 .top-bar {
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 600px;
   width: 100%;
   z-index: 100;
   background-color: rgb(203, 248, 40);
@@ -176,7 +187,7 @@ h1 {
 }
 
 .logo {
-  width: 300px;
+  width: 200px;
 }
 
 
@@ -402,6 +413,10 @@ input[type="submit"]:hover {
 button {
   background-color: #333;
 
+
+  color: rgb(156, 240, 10);
+}
+
 .home{
   display:flex;
   background-color: white;
@@ -426,11 +441,35 @@ button:hover {
 
 .search-title {
   margin-top: 50px;
-
+}
 .home:hover {
+
   background-color:  #333;
   color: white;
 }
+
+.addtocartBtn{
+  display:flex;
+  background-color: white;
+  color: black;
+  border: 2px solid rgb(203, 248, 40);
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 20px;
+  margin: 4px 25px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.addtocartBtn:hover {
+
+  background-color:  #333;
+  color: white;
+}
+
 
 .addtocartBtn{
   display:flex;
@@ -454,6 +493,7 @@ button:hover {
 }
 
 
+
 .search-title{
   margin-top: 50px
 }
@@ -473,6 +513,7 @@ button:hover {
 
 .game-card {
   position: relative;
+ 
   border: 1px solid #ccc;
   border-radius: 5px;
   margin: 36px 5px 36px 5px;
@@ -510,6 +551,41 @@ button:hover {
   color: white;
 }
 
+.cart-page-container {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 50px 0;
+ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.items-in-cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: 30px;
+  border: 1px solid rgb(203, 248, 40);
+}
+
+.cart-img{
+  margin-left: 11px;
+  width: 55px;
+  height: auto;
+
+}
+
+.deleteBtn {
+  margin-left: 20px;
+ 
+
+}
+
+.cartBtn {
+  margin-left: 20px;
+  padding: 10px 18px;
+}
+
 .single-game-container {
   display: flex;
   align-items: center;
@@ -529,6 +605,7 @@ button:hover {
 
 .game-details-container {
   width: 50%;
+ 
 }
 
 .game-details-container h1 {
@@ -589,12 +666,7 @@ footer {
 }
 
 .footer-links ul li a:hover {
-  color: rgb(203, 248, 40);;
-}
-
-
-.footer-links ul li a:hover {
-  color: #007bff;
+  color: rgb(203, 248, 40);
 }
 
 
@@ -698,24 +770,21 @@ input[type="submit"] {
   right: 0;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .game-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-}
+} */
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .logo {
-    width: auto;
-  }
+    width: 20px;
+  } */
 
   .game-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
-  nav {
-    margin-top: 320px;
-    text-decoration: none;
-  }
+ 
 
   .nav-links {
     display: none;
@@ -738,6 +807,68 @@ input[type="submit"] {
     display: block;
   }
 
-  
-}
+  .modal {
+     position: fixed;
+     left: 0;
+     top: 0;
+     z-index: 1;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgb(0, 0, 0, 0.2);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    
+     transition: all 0.3s ease-in-out;
+     pointer-events: none;
+
+  }
+  .modal.enter-done{
+    opacity: 1;
+    pointer-events: visible;
+  }
+  .modal.exit{
+    opacity: 0;
+  }
+  .modal.enter-done .modal-content{
+    transform: translateY(0);
+  }
+
+  .modal.exit .modal-content {
+    transform: translateY(-200px);
+  }
+
+  .modal-content {
+    width: 500px;
+    background-color: #409e40;
+    padding: 20px;
+    border: 1px solid #888;
+    margin : 15% auto;
+    transform: translateY(-200px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .modal-header,
+  .modal-footer {
+    padding: 10px;
+  }
+  .modal-title {
+    margin: 0;
+  }
+  .modal-body{
+    padding:10px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+
+
+
+ @media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+} 
 

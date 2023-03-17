@@ -1,9 +1,12 @@
 const client = require("./client");
 
 //function to create a new cart
-const createCart = async (userId) => {
+const createCart = async ({userId}) => {
   try {
-    const SQL = `INSERT INTO cart ("userId") VALUES ($1) RETURNING *;`;
+    const SQL = 
+    `INSERT INTO cart (user_id)
+     VALUES ($1)
+     RETURNING *`;
     const response = await client.query(SQL, [userId]);
     return response.rows[0];
   } catch (error) {
@@ -14,9 +17,10 @@ const createCart = async (userId) => {
 
 // get cart by user id
 const getCartByUserId = async ({ userId }) => {
+
   const SQL = `
-    SELECT * FROM carts
-    WHERE user_id = $1 AND is_active = true;
+    SELECT * FROM cart
+    WHERE user_id = $1 AND is_purchased=false;
   `;
   const response = await client.query(SQL, [userId]);
   const cart = response.rows[0];
@@ -24,7 +28,7 @@ const getCartByUserId = async ({ userId }) => {
   const productsSQL = `
   SELECT * FROM cart_products
   LEFT JOIN products ON cart_products.product_id = products.id
-  WHERE cart_products.cart_id = $1
+  WHERE cart_products.cart_id = $1 AND quantity > 0
   `;
   const productsResponse = await client.query(productsSQL, [cart.id]);
   cart.products = productsResponse.rows;
@@ -33,31 +37,50 @@ const getCartByUserId = async ({ userId }) => {
 
 
 // function to add a product to a cart
-const addProductToCart = async (cartId, productId, quantity) => {
+const addProductToCart = async ({cartId, productId}) => {
+ // console.log(productId, 'yoyo')
   try {
-    const SQL = `
-      INSERT INTO cart_Products (cart_id, product_id, quantity)
-      VALUES ($1, $2, $3)
-      RETURNING *;
+    const checkSQL = `
+      SELECT * FROM cart_products
+      WHERE cart_id = $1 AND product_id = $2
     `;
-    const response = await client.query(SQL, [cartId, productId, quantity]);
-    return response.rows[0];
-  } catch (error) {
-    console.error(error);
-    throw error;
+    
+    const checkResponse = await client.query(checkSQL, [cartId, productId]);
+  if (checkResponse.rows.length) {
+    await client.query(
+      `UPDATE cart_products SET quantity = quantity + 1 WHERE cart_id = $1 AND product_id = $2`,
+      [cartId, productId]
+    );
+    return;
   }
-};
+  const SQL = `
+    INSERT INTO cart_products(product_id, cart_id)
+    VALUES($1, $2)
+    RETURNING *
+    `;
+  await client.query(SQL, [productId, cartId]);
+  console.log()
+  return;
+  
+} catch (error) {
+  console.error(error);
+  throw error;
+}
+}
+
+    
+  
 
 // function to update the quantity of a product in a cart
-const updateCartProductQuantity = async (cartProductId, quantity) => {
+const updateCartProductQuantity = async (quantity, productId, cartId) => {
   try {
     const SQL = `
       UPDATE cart_Products
       SET quantity = $1
-      WHERE id = $2
+      WHERE product_id = $2 AND cart_id = $3
       RETURNING *;
     `;
-    const response = await client.query(SQL, [quantity, cartProductId]);
+    const response = await client.query(SQL, [quantity, productId, cartId]);
     return response.rows[0];
   } catch (error) {
     console.error(error);
@@ -66,13 +89,32 @@ const updateCartProductQuantity = async (cartProductId, quantity) => {
 };
 
 // function to delete a product from a cart
-const deleteCartProduct = async (cartProductId) => {
+const deleteCartProduct = async ({cartId, productId}) => {
+  
   try {
-    const SQL = `
+  const checkSQL = `
+    SELECT * FROM cart_products
+    WHERE cart_id = $1 AND product_id = $2
+  `;
+  const checkResponse = await client.query(checkSQL, [cartId, productId]);
+  if (checkResponse.rows.length) {
+    await client.query(
+      `UPDATE cart_products 
+       SET quantity = quantity - 1 
+       WHERE cart_id = $1 AND product_id = $2 
+       AND quantity > 0` ,
+      [cartId, productId]
+    );
+    return;
+  }
+ 
+  const SQL = `
       DELETE FROM cart_Products
-      WHERE id = $1;
+      WHERE cart_id = $1 AND product_id = $2
     `;
-    await client.query(SQL, [cartProductId]);
+    await client.query(SQL, [cartId, productId ]);
+    const updatedCart = await updateCartProductQuantity();
+    return updatedCart;
   } catch (error) {
     console.error(error);
     throw error;
@@ -83,14 +125,16 @@ const deleteCartProduct = async (cartProductId) => {
 // purchase cart
 const purchaseCart = async ({ cartId, userId }) => {
   const SQL = `
-  UPDATE carts
-  SET is_active = false
+  UPDATE cart
+  SET is_Purchased = true
   WHERE id = $1
   `;
   await client.query(SQL, [cartId]);
   const newCart = await createCart({ userId });
   return newCart;
 };
+
+
 
 
 module.exports = {

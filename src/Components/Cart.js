@@ -1,44 +1,73 @@
-function Cart({ userId }) {
-  const [cart, setCart] = useState(null);
+import React from 'react';
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-  useEffect(() => {
-    async function fetchCart() {
-      const cart = await getCartByUserId({ userId });
-      setCart(cart);
-    }
-    fetchCart();
-  }, [userId]);
 
-  if (!cart) {
-    return <div>Loading...</div>;
-  }
+const Cart = ({ cart, setCart }) => {
+  const deleteProductFromCart = async (productId) => {
+    const token = window.localStorage.getItem('token');
+    if (!token) return;
+    const response = await fetch(`/api/cart/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+    });
+    const updatedCart = await response.json();
+    setCart(updatedCart);
+    return updatedCart;
+  };
 
+  const purchaseCart = async () => {
+    const token = window.localStorage.getItem('token');
+    if (!token) return;
+    const response = await fetch(`/api/cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+    });
+    const newCart = await response.json();
+    setCart(newCart);
+  };
+
+ // console.log('Cart: ', cart);
   return (
-    <div>
-      <h1>Your Cart</h1>
+    <div className="cart-page-container">
+      <h2>My cart items</h2>
       <ul>
-        {cart.products.map((product) => (
-          <li key={product.id}>
-            {product.name} - Quantity: {product.quantity}
-            <button onClick={() => handleDelete(product.id)}>Delete</button>
-          </li>
-        ))}
+        {cart.products?.map((product) => {
+          return (
+            <li className="items-in-cart">
+              {product.name}${product.price}({product.quantity})
+              <img className="cart-img" src={product.image_url} />
+              <button
+                className="deleteBtn"
+                onClick={async () => {
+                  const updatedCart = await deleteProductFromCart(product.id);
+                }}
+              >
+                Delete
+              </button>
+            </li>
+          );
+        })}
       </ul>
-      <button onClick={() => handlePurchase(cart.id)}>Purchase</button>
+      <button className="cartBtn"
+        onClick={async () => {
+          const newCart = await purchaseCart();
+        }}
+      >
+        PURCHASE CART
+      </button>
     </div>
   );
+};
 
-  async function handleDelete(productId) {
-    await deleteCartProduct(productId);
-    const updatedCart = await getCartByUserId({ userId });
-    setCart(updatedCart);
-  }
 
-  async function handlePurchase(cartId) {
-    await purchaseCart({ cartId, userId });
-    const newCart = await createCart(userId);
-    setCart(newCart);
-  }
-}
 
-export default Cart;
+
+
+ export default Cart;

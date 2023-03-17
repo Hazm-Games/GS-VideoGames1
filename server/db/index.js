@@ -9,8 +9,8 @@ const syncTables = async () => {
   console.log("syncing tables");
   try {
     const SQL = `
-  DROP TABLE IF EXISTS Cart_Products;
-  DROP TABLE IF EXISTS Cart;
+  DROP TABLE IF EXISTS cart_Products;
+  DROP TABLE IF EXISTS cart;
   DROP TABLE IF EXISTS products;
   DROP TABLE IF EXISTS platform;
   DROP TABLE IF EXISTS users;
@@ -18,6 +18,8 @@ const syncTables = async () => {
     id SERIAL PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    "phoneNumber" VARCHAR(100),
     "isAdmin" BOOLEAN DEFAULT false
   );
   CREATE TABLE platform(
@@ -36,15 +38,15 @@ const syncTables = async () => {
     );
    CREATE TABLE cart(
     id  SERIAL  PRIMARY KEY,
-    "userId" INTEGER NOT NULL REFERENCES Users(id),
+    user_id INTEGER REFERENCES users(id) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    "isPurchased" BOOLEAN DEFAULT false
+    is_purchased BOOLEAN DEFAULT false
    );
    CREATE TABLE cart_Products(
     id  SERIAL  PRIMARY KEY,
-    cart_id INTEGER NOT NULL REFERENCES Cart(id),
-    product_id INTEGER NOT NULL REFERENCES Products(id),
-    quantity INTEGER NOT NULL
+    cart_id INTEGER NOT NULL REFERENCES cart(id),
+    product_id INTEGER NOT NULL REFERENCES products(id),
+    quantity INTEGER DEFAULT 1
   );
   
   `;
@@ -86,15 +88,22 @@ const syncAndSeed = async () => {
       createUser({
         username: "admin",
         password: "adminPassword",
+        email: "admin@admin.com",
+        phoneNumber: "904-222-2222",
         isAdmin: true
       }),
 
     ]);
-    await createCart( 1 );
-    await createCart( 2 );
+    const [moeCart, lucyCart] = await Promise.all([
+      createCart({ userId: moe.id }),
+      createCart({ userId: lucy.id }),
+    ]);
     console.log("--- seeded users ---");
     console.log(moe);
     console.log(lucy);
+    console.log(moeCart);
+    console.log(lucyCart);
+
     console.log("seeding platforms");
     console.log("seeding products");
     await platformAdder();

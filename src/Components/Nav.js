@@ -1,4 +1,5 @@
 
+import { CardTravel } from "@mui/icons-material";
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom"
 
@@ -54,12 +55,12 @@ const Nav = (props) => {
                   height="auto"
                   src="/static/Files/shoppingCart.png"
                   alt="shopping cart"
-                />
+                />  
               </Link>
 
               <div>
                 <Link className="mwhite" to="/cart">
-                  cart
+                  cart 
                 </Link>
               </div>
             </div>
