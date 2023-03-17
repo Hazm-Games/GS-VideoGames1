@@ -28,7 +28,7 @@ const getCartByUserId = async ({ userId }) => {
   const productsSQL = `
   SELECT * FROM cart_products
   LEFT JOIN products ON cart_products.product_id = products.id
-  WHERE cart_products.cart_id = $1
+  WHERE cart_products.cart_id = $1 AND quantity > 0
   `;
   const productsResponse = await client.query(productsSQL, [cart.id]);
   cart.products = productsResponse.rows;
@@ -38,7 +38,7 @@ const getCartByUserId = async ({ userId }) => {
 
 // function to add a product to a cart
 const addProductToCart = async ({cartId, productId}) => {
-  console.log(productId, 'yoyo')
+ // console.log(productId, 'yoyo')
   try {
     const checkSQL = `
       SELECT * FROM cart_products
@@ -72,15 +72,15 @@ const addProductToCart = async ({cartId, productId}) => {
   
 
 // function to update the quantity of a product in a cart
-const updateCartProductQuantity = async (cartProductId, quantity) => {
+const updateCartProductQuantity = async (quantity, productId, cartId) => {
   try {
     const SQL = `
       UPDATE cart_Products
       SET quantity = $1
-      WHERE id = $2
+      WHERE product_id = $2 AND cart_id = $3
       RETURNING *;
     `;
-    const response = await client.query(SQL, [quantity, cartProductId]);
+    const response = await client.query(SQL, [quantity, productId, cartId]);
     return response.rows[0];
   } catch (error) {
     console.error(error);
@@ -89,13 +89,32 @@ const updateCartProductQuantity = async (cartProductId, quantity) => {
 };
 
 // function to delete a product from a cart
-const deleteCartProduct = async (cartProductId) => {
+const deleteCartProduct = async ({cartId, productId}) => {
+  
   try {
-    const SQL = `
+  const checkSQL = `
+    SELECT * FROM cart_products
+    WHERE cart_id = $1 AND product_id = $2
+  `;
+  const checkResponse = await client.query(checkSQL, [cartId, productId]);
+  if (checkResponse.rows.length) {
+    await client.query(
+      `UPDATE cart_products 
+       SET quantity = quantity - 1 
+       WHERE cart_id = $1 AND product_id = $2 
+       AND quantity > 0` ,
+      [cartId, productId]
+    );
+    return;
+  }
+ 
+  const SQL = `
       DELETE FROM cart_Products
-      WHERE id = $1;
+      WHERE cart_id = $1 AND product_id = $2
     `;
-    await client.query(SQL, [cartProductId]);
+    await client.query(SQL, [cartId, productId ]);
+    const updatedCart = await updateCartProductQuantity();
+    return updatedCart;
   } catch (error) {
     console.error(error);
     throw error;
@@ -107,7 +126,7 @@ const deleteCartProduct = async (cartProductId) => {
 const purchaseCart = async ({ cartId, userId }) => {
   const SQL = `
   UPDATE cart
-  SET is_active = false
+  SET is_Purchased = true
   WHERE id = $1
   `;
   await client.query(SQL, [cartId]);
