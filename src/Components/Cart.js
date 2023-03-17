@@ -36,6 +36,11 @@ const Cart = ({ cart, setCart }) => {
   };
 
 
+  function ThankYou() {
+    alert ("Confirm Purchase?");
+   // document.write ("Thank you for your Purchase!");
+
+
   
 
   function ThankYou() {
@@ -47,6 +52,7 @@ const Cart = ({ cart, setCart }) => {
     }
      
  // document.location.href='your url';
+
   }
  // console.log('Cart: ', cart);
   return (
@@ -55,6 +61,7 @@ const Cart = ({ cart, setCart }) => {
       <ul>
         {cart.products?.map((product) => {
           return (
+
 
             <li className="items-in-cart">
               {product.name}${product.price}({product.quantity})
