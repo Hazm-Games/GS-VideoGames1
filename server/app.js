@@ -30,10 +30,10 @@ app.get('/api/cart/:userId', async (req, res) => {
   res.send(cart);
 });
 
-app.post('/api/cart/', async (req, res) => {
+app.post('/api/cart', async (req, res) => {
   const user = await getUserByToken(req.headers.authorization);
-  const cart = await getCartByUserId({ user_id: user.id });
-  const newCart = await purchaseCart({ cartId: cart.id, user_id: user.id });
+  const cart = await getCartByUserId({ userId: user.id });
+  const newCart = await purchaseCart({ cartId: cart.id, userId: user.id });
   res.send(newCart);
 });
 
@@ -44,9 +44,9 @@ app.post('/api/cart/:productId', async (req, res) => {
     res.status(401).send({ error: 'Unauthorized' });
     return;
   }
-  const cart = await getCartByUserId({ user_id: user.id });
-  await addProductToCart({ cartId: cart.id, productId });
-  const updatedCart = await getCartByUserId({ user_id: user.id });
+  const cart = await getCartByUserId({ userId: user.id });
+  await addProductToCart({ cartId: cart.id,  productId });
+  const updatedCart = await getCartByUserId({ userId: user.id });
   res.send(updatedCart);
 });
 

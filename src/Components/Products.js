@@ -7,7 +7,9 @@ import { Link, Routes, Route, useNavigate, useParams } from "react-router-dom";
 const Products = ({ products, setCart }) => {
   const navigate = useNavigate();
   const { term } = useParams();
+
   const addProductToCart = async (productId) => {
+    console.log(productId)
     const token = window.localStorage.getItem('token');
     if (!token) return;
     const response = await fetch(`/api/cart/${productId}`, {
@@ -18,6 +20,7 @@ const Products = ({ products, setCart }) => {
       },
     });
     const updatedCart = await response.json();
+    console.log(updatedCart)
     return updatedCart;
   };
 
@@ -43,8 +46,10 @@ const Products = ({ products, setCart }) => {
             <li className="nostyle" key={product.id}>
               <h3>
 
-                <Link to={`/products/${product.id}`}>{product.name}</Link>
-                {''}
+                <Link to={`/products/${product.id}`}>
+                <div className="game-card">
+                <img src={product.image_url} />
+                {product.name}
           <button
             onClick={async () => {
               const updatedCart = await addProductToCart(product.id);
@@ -53,7 +58,8 @@ const Products = ({ products, setCart }) => {
           >
             Add to Cart
           </button>
-
+             </div>
+             </Link>
               </h3>
             </li>
           );

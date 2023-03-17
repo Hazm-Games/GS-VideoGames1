@@ -14,7 +14,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.post("/user", async (req, res, next) => {
+router.patch("/user", async (req, res, next) => {
   try {
     //const token = await authenticate(req.body);
     const updatedUser = await updateUser(req.body);
