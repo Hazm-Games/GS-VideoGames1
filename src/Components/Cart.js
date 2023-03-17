@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
+
+
 const Cart = ({ cart, setCart }) => {
   const deleteProductFromCart = async (productId) => {
     const token = window.localStorage.getItem('token');
@@ -33,9 +35,18 @@ const Cart = ({ cart, setCart }) => {
     setCart(newCart);
   };
 
+
+  
+
   function ThankYou() {
-    alert ("Confirm Purchase?");
-   // document.write ("Thank you for your Purchase!");
+    
+    if (confirm("Confirm Purchase?") == true) {
+        alert("Thank you for your purchase!");  window.location.href = "#/";
+    } else {
+        return
+    }
+     
+ // document.location.href='your url';
   }
  // console.log('Cart: ', cart);
   return (
