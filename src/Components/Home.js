@@ -14,6 +14,7 @@ const Home = () => {
           <button>
             <Link
               className="link"
+
               style={{
                 color: "#B5F000",
                 textDecoration: "none",
@@ -21,6 +22,9 @@ const Home = () => {
               }}
               to={`/products`}
             >
+  
+
+
               Browse games
             </Link>
           </button>
