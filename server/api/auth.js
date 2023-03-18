@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getUserByUserName, createUser, updateUser } = require("../db/User");
 const { authenticate, getUserByToken } = require("../db");
+const { getAllCartsByUserId } = require("../db/cart");
 
 module.exports = router;
 // current location is api/auth
@@ -19,6 +20,16 @@ router.patch("/user", async (req, res, next) => {
     //const token = await authenticate(req.body);
     const updatedUser = await updateUser(req.body);
     res.send(updatedUser);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+router.get("/user/carts", async (req, res, next) => {
+  try {
+    const user = await getUserByToken(req.headers.authorization);
+    const carts = await getAllCartsByUserId({userId: user.id });
+    res.send(carts);
   } catch (ex) {
     next(ex);
   }

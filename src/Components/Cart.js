@@ -35,23 +35,19 @@ const Cart = ({ cart, setCart }) => {
     setCart(newCart);
   };
 
-
-  function ThankYou() {
-    alert ("Confirm Purchase?");
-   // document.write ("Thank you for your Purchase!");
-
-
   
 
-  function ThankYou() {
+  const thankYou = async() => {
     
-    if (confirm("Confirm Purchase?") == true) {
-        alert("Thank you for your purchase!");  window.location.href = "#/";
-    } else {
-        return
-    }
-     
- // document.location.href='your url';
+   const message = confirm("Confirm Purchase?")
+
+    if (message === true) {
+      const newCart = await purchaseCart();
+      alert("Thank you for your purchase!");  window.location.href = "#/";
+     } else {
+      return
+      };
+   
 
   }
  // console.log('Cart: ', cart);
@@ -82,9 +78,7 @@ const Cart = ({ cart, setCart }) => {
 
       <button className="cartBtn"
 
-        onClick={async () => {
-          const newCart = await purchaseCart(); ThankYou();
-        }}
+        onClick= { () => thankYou()}
       >
         PURCHASE CART
       </button>
