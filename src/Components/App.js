@@ -61,7 +61,7 @@ const App = () => {
   
   
 
-  };
+  
 
   useEffect(() => {
     attemptLogin();
@@ -257,6 +257,6 @@ const App = () => {
       </Routes>
     </div>
   );
-
+        }
 
 export default App;
