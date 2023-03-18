@@ -84,7 +84,7 @@ const Cart = ({ cart, setCart }) => {
       </button>
     </div>
   );
-}};
+};
 
 
 
