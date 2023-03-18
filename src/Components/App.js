@@ -54,6 +54,13 @@ const App = () => {
             .then((cart) => setCart(cart));
         });
     }
+  }
+       
+
+
+  
+  
+
   };
 
   useEffect(() => {
@@ -250,6 +257,6 @@ const App = () => {
       </Routes>
     </div>
   );
-};
+
 
 export default App;

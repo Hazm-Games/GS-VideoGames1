@@ -35,6 +35,27 @@ const getCartByUserId = async ({ userId }) => {
   return cart;
 };
 
+const getAllCartsByUserId = async ({ userId }) => {
+
+  const SQL = `
+    SELECT * FROM cart
+    WHERE user_id = $1 AND is_purchased= true;
+  `;
+  const response = await client.query(SQL, [userId]);
+  const carts = response.rows
+
+  for(let i = 0; i < carts.length; i++){
+  const cart = carts[i] 
+  const productsSQL = `
+  SELECT * FROM cart_products
+  LEFT JOIN products ON cart_products.product_id = products.id
+  WHERE cart_products.cart_id = $1 AND quantity > 0
+  `;
+  const productsResponse = await client.query(productsSQL, [cart.id]);
+  cart.products = productsResponse.rows;
+  }
+  return carts
+}
 
 // function to add a product to a cart
 const addProductToCart = async ({cartId, productId}) => {
@@ -144,4 +165,5 @@ module.exports = {
   updateCartProductQuantity,
   deleteCartProduct,
   purchaseCart,
+  getAllCartsByUserId
 };
