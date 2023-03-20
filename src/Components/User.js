@@ -12,10 +12,12 @@ const DisplayUser = ({ updateUser }) => {
 
   const _displayUser = (ev) => {
     ev.preventDefault();
-    updateUser({ id: userDetails.id, username, email, phoneNumber });
+    updateUser({ id: userDetails.id, username, email, phoneNumber }); detailsUpdated()
   };
 
-  
+  function detailsUpdated () {
+    alert("Account Info Updated");
+  }
 
   useEffect(() => {
     fetch("/api/auth/", {
