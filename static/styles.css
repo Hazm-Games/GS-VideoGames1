@@ -459,9 +459,9 @@ button:hover {
   display: inline-block;
   font-size: 16px;
   border-radius: 20px;
-  margin: 4px 25px;
+  margin: 4px 50px;
   cursor: pointer;
-  width: 100%;
+  width: 400px;
 }
 
 .addtocartBtn:hover {

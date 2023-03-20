@@ -47,21 +47,9 @@ const App = () => {
         },
       })
         .then((response) => response.json())
-        .then((user) => {
-          setAuth(user);
-          fetch(`/api/cart/${user.id}`)
-            .then((response) => response.json())
-            .then((cart) => setCart(cart));
-        });
-    }
-  }
+        .then((user) => setAuth(user));
+    }};
        
-
-
-  
-  
-
-  
 
   useEffect(() => {
     attemptLogin();
@@ -257,6 +245,6 @@ const App = () => {
       </Routes>
     </div>
   );
-        }
 
+        };
 export default App;
