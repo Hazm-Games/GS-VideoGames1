@@ -24,6 +24,7 @@ const getCartByUserId = async ({ userId }) => {
   `;
   const response = await client.query(SQL, [userId]);
   const cart = response.rows[0];
+  console.log('this is what I want', cart)
   // get products, and attach to cart
   const productsSQL = `
   SELECT * FROM cart_products
