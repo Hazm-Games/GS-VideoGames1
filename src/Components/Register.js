@@ -6,21 +6,18 @@ const Register = ({register})=> {
     const [error,setError] = useState('');
     
 
-    
-    
-    const _register = (ev)=> {
-        try{
-            setError('')
-        ev.preventDefault();
-        register({username, password});
+    function _register(ev) {
+        try {
+            setError('');
+            ev.preventDefault();
+            register({ username, password });
         }
-        catch(error){
-            setError(error.message)
+        catch (error) {
+            setError(error.message);
         }
-        
-    
 
-    };
+    }
+    
     return(
         <div>
             <h1 className="title">Register a new account!</h1>
