@@ -6,7 +6,6 @@ const { myGames } = require("./data");
 const { createCart } = require("./cart");
 
 const syncTables = async () => {
-  console.log("syncing tables");
   try {
     const SQL = `
   DROP TABLE IF EXISTS cart_Products;
@@ -51,9 +50,7 @@ const syncTables = async () => {
   
   `;
     await client.query(SQL);
-    console.log("Finished building tables");
   } catch (error) {
-    console.error("error constructing tables");
     throw error;
   }
 };
@@ -70,7 +67,6 @@ const platformAdder = async () => {
       name: "Nintendo",
     }),
   ]);
-  console.log(platformInsert);
 };
 
 const syncAndSeed = async () => {
@@ -90,22 +86,14 @@ const syncAndSeed = async () => {
         password: "adminPassword",
         email: "admin@admin.com",
         phoneNumber: "904-222-2222",
-        isAdmin: true
+        isAdmin: true,
       }),
-
     ]);
     const [moeCart, lucyCart] = await Promise.all([
       createCart({ userId: moe.id }),
       createCart({ userId: lucy.id }),
     ]);
-    console.log("--- seeded users ---");
-    console.log(moe);
-    console.log(lucy);
-    console.log(moeCart);
-    console.log(lucyCart);
 
-    console.log("seeding platforms");
-    console.log("seeding products");
     await platformAdder();
 
     for (let i = 0; i < myGames.length; i++) {
@@ -123,5 +111,5 @@ module.exports = {
   createProduct,
   getUserByToken,
   client,
-  myGames
+  myGames,
 };
