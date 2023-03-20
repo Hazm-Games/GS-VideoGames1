@@ -15,7 +15,10 @@ body {
 }
 
 header {
+  display: relative;
+  font-size: small;
   width: 100%;
+  height: fit-content;
   bottom: 600px;
   background-color: #333;
   color: #fff;
@@ -31,7 +34,7 @@ header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://i.ibb.co/0XSF0RD/guy-playing.png");
   margin-top: 5px;
-  height: 494px;
+  height: 700px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -64,7 +67,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 84%;
-  margin-top: 120px;
+  margin-top: 0px;
   flex-direction: row;
   flex-flow: wrap;
   
@@ -76,7 +79,8 @@ nav ul {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: top;
+  vertical-align: top;
   height: 100%;
   width: 100%;
   transform: translate(5%, -3%);
@@ -162,10 +166,10 @@ list-style-type: none;
 
 
 .top-bar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
-  bottom: 600px;
+  bottom: 0%;
   width: 100%;
   z-index: 100;
   background-color: rgb(203, 248, 40);
@@ -290,7 +294,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 84%;
-  margin-top: 120px;
+  margin-top: 20px;
   text-decoration: none;
 }
 
@@ -806,69 +810,3 @@ input[type="submit"] {
   .hamburger {
     display: block;
   }
-
-  .modal {
-     position: fixed;
-     left: 0;
-     top: 0;
-     z-index: 1;
-     width: 100%;
-     height: 100%;
-     overflow: auto;
-     background-color: rgb(0, 0, 0, 0.2);
-     display: flex;
-     align-items: center;
-     justify-content: center;
-    
-     transition: all 0.3s ease-in-out;
-     pointer-events: none;
-
-  }
-  .modal.enter-done{
-    opacity: 1;
-    pointer-events: visible;
-  }
-  .modal.exit{
-    opacity: 0;
-  }
-  .modal.enter-done .modal-content{
-    transform: translateY(0);
-  }
-
-  .modal.exit .modal-content {
-    transform: translateY(-200px);
-  }
-
-  .modal-content {
-    width: 500px;
-    background-color: #409e40;
-    padding: 20px;
-    border: 1px solid #888;
-    margin : 15% auto;
-    transform: translateY(-200px);
-    transition: all 0.3s ease-in-out;
-  }
-
-  .modal-header,
-  .modal-footer {
-    padding: 10px;
-  }
-  .modal-title {
-    margin: 0;
-  }
-  .modal-body{
-    padding:10px;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-  }
-
-
-
- @media (max-width: 768px) {
-  .game-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-
-} 
-
