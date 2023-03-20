@@ -63,7 +63,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    updateUser();
+    updateUser(auth);
   }, []);
 
   /*  useEffect(() => {

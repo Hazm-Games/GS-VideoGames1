@@ -68,11 +68,13 @@ const DisplayUser = ({ updateUser }) => {
       </form>
       <form>
       <button style={{ width: '96%', display: 'block', paddingTop: '10', paddingBottom: '10', borderRadius: '8px' }}
-       onClick = {carts.map((cart) => {
-        return (
-       <div>
+       onClick =  {carts.map((cart) => {
+        return ( 
+          <li className="nostyle" key={cart.id}>
+          <div>
           {cart.products}
        </div>
+       </li>
         )
       }
   )}
