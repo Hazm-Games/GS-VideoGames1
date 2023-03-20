@@ -12,7 +12,7 @@ const Login = ({ login })=> {
   return (
     <div>
       <h1 className="title">Login to view your account info!</h1>
-      <form onSubmit={ _login }>
+      <form onSubmit={_login }>
         <input
           placeholder='username'
           value = { username }
