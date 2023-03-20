@@ -26,7 +26,6 @@ app.get("/api/products", async (req, res) => {
 
 app.get('/api/cart/:userId', async (req, res) => {
   const { userId } = req.params;
-  const cart = await getCartByUserId({ userId });
   const cart = createCart({ userId })
   res.send(cart);
 });
@@ -71,8 +70,6 @@ app.get("/api/products/:id", async (req, res) => {
   res.send(singleProduct);
 });
 
-<<<<<<< Updated upstream
-=======
 
 app.post('/api/cart', async (req, res) => {
   const user = await getUserByToken(req.headers.authorization);
@@ -81,7 +78,7 @@ app.post('/api/cart', async (req, res) => {
   res.send(newCart);
 });
 
->>>>>>> Stashed changes
+
 app.get("/api/nintendo", async (req, res) => {
   const nintendoProducts = await getNintendoProducts();
   res.send(nintendoProducts);
