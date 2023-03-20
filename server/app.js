@@ -70,6 +70,19 @@ app.get("/api/products/:id", async (req, res) => {
   res.send(singleProduct);
 });
 
+app.get('/api/cart/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const cart = await getCartByUserId({ userId });
+  res.send(cart);
+});
+
+app.post('/api/cart', async (req, res) => {
+  const user = await getUserByToken(req.headers.authorization);
+  const cart = await getCartByUserId({ userId: user.id });
+  const newCart = await purchaseCart({ cartId: cart.id, userId: user.id });
+  res.send(newCart);
+});
+
 app.get("/api/nintendo", async (req, res) => {
   const nintendoProducts = await getNintendoProducts();
   res.send(nintendoProducts);
