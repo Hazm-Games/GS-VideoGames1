@@ -89,7 +89,7 @@ const Nav = (props) => {
                   Deals
                 </Link>
                 <Link className="fab" to="/products">
-                  Products
+                  Games
                 </Link>
                 <button className="loginBtn" onClick={logout}>
                   {" "}
