@@ -9,7 +9,7 @@ const Products = ({ products, setCart }) => {
   const { term } = useParams();
 
   const addProductToCart = async (productId) => {
-    console.log(productId)
+    
     const token = window.localStorage.getItem('token');
     if (!token) return;
     const response = await fetch(`/api/cart/${productId}`, {
@@ -20,7 +20,7 @@ const Products = ({ products, setCart }) => {
       },
     });
     const updatedCart = await response.json();
-    console.log(updatedCart)
+    
     return updatedCart;
   };
 
