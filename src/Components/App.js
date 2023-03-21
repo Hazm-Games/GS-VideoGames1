@@ -120,10 +120,15 @@ const App = () => {
           window.localStorage.setItem("token", data.token);
           attemptLogin();
         } else {
-          console.log(data);
+      
         }
       });
   };
+
+
+  function passwordError() {
+    alert("Password must be at least 8 characters");
+  }
 
   const updateUser = async ({
     username,
@@ -168,7 +173,7 @@ const App = () => {
           window.localStorage.setItem("token", data.token);
           attemptLogin();
         } else {
-         
+          passwordError();
         }
       });
   };
